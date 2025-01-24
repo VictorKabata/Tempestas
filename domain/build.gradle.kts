@@ -16,4 +16,5 @@ java {
 dependencies{
     api(libs.koin.core)
     api(libs.napier)
+    api(libs.coroutines)
 }
