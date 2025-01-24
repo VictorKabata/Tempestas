@@ -13,3 +13,9 @@ kotlin {
     }
 }
 */
+
+dependencies {
+    implementation(project(":domain"))
+    implementation(project(":data:network"))
+    implementation(project(":data:cache"))
+}
