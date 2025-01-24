@@ -1,4 +1,4 @@
-package com.vickbt.tempestas
+package com.vickbt.tempestas.ui.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
