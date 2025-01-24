@@ -13,7 +13,7 @@ java {
     }
 }*/
 
-dependencies{
+dependencies {
     api(libs.koin.core)
     api(libs.napier)
     api(libs.coroutines)

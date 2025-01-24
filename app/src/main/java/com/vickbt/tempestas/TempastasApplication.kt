@@ -3,7 +3,7 @@ package com.vickbt.tempestas
 import android.app.Application
 import org.koin.core.context.startKoin
 
-class TempastasApplication:Application() {
+class TempastasApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -12,5 +12,4 @@ class TempastasApplication:Application() {
             modules(listOf())
         }
     }
-
 }
