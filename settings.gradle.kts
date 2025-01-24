@@ -23,3 +23,4 @@ rootProject.name = "Tempestas"
 include(":app")
 include(":domain")
 include(":data:network")
+include(":data:cache")
