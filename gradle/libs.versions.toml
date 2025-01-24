@@ -73,7 +73,7 @@ ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-contentNegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
-ktor-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
+ktor-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 #ktor-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 ktor-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 
@@ -96,7 +96,7 @@ room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
 
 [bundles]
-ktor = ["ktor-core", "ktor-contentNegotiation", "ktor-json", "ktor-logging"]
+ktor = ["ktor-core", "ktor-cio", "ktor-contentNegotiation", "ktor-json", "ktor-logging"]
 coil = ["coil-compose", "coil-compose-core", "coil-ktor", "coil-multiplatform"]
 firebase = ["firebase-analytics", "firebase-crashlytics", "firebase-performance"]
 
