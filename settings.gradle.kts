@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "Tempestas"
 include(":app")
 include(":domain")
+include(":data:network")
