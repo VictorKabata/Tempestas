@@ -9,7 +9,7 @@ class TempastasApplication : Application() {
         super.onCreate()
 
         startKoin {
-            modules(listOf())
+            //modules(appModule, cacheModule, networkModule, repositoryModule)
         }
     }
 }
