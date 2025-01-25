@@ -1,8 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.android.kotlin)
-    id("com.google.firebase.appdistribution")
-    id("com.google.gms.google-services")
+    /*id("com.google.firebase.appdistribution")
+    id("com.google.gms.google-services")*/
 }
 
 android {
@@ -38,6 +38,15 @@ android {
     buildFeatures {
         compose = true
     }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.1"
+    }
+
+    packaging {
+        resources.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+        resources.excludes.add("META-INF/*")
+    }
 }
 
 dependencies {
@@ -60,7 +69,8 @@ dependencies {
     implementation(libs.ui.tooling.preview)
 
     implementation(libs.coil)
-    implementation(libs.firebase.analytics)
+
+    // implementation(libs.firebase.analytics)
 
     testImplementation(libs.androidX.junit)
     testImplementation(libs.android.test.core)

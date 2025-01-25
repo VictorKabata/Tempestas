@@ -1,13 +1,16 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 
-
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinX.serialization)
     alias(libs.plugins.buildKonfig)
     alias(libs.plugins.compose)
+}
+
+kotlin {
+    jvmToolchain(17)
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -64,8 +67,8 @@ android {
     namespace = "com.vickbt.shared"
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_20
-        targetCompatibility = JavaVersion.VERSION_20
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
