@@ -1,4 +1,4 @@
-package com.vickbt.domain.utils
+package com.vickbt.network.utils
 
 object Constants {
 

@@ -1,5 +1,6 @@
 plugins {
     id("java-library")
+    alias(libs.plugins.kotlinX.serialization)
 //    alias(libs.plugins.kotlin.jvm)
 }
 java {
@@ -13,5 +14,7 @@ java {
 }*/
 
 dependencies {
-    implementation(libs.bundles.ktor)
+    api(libs.bundles.ktor)
+    implementation(libs.koin.core)
+    implementation(libs.napier)
 }
