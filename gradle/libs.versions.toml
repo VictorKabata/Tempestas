@@ -84,6 +84,8 @@ coil-multiplatform = { module = "io.coil-kt.coil3:coil", version.ref = "coil" }
 
 napier = { module = "io.github.aakira:napier", version.ref = "napier" }
 
+kotlinX-dateTime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDateTime" }
+
 navigation = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigation" }
 
 firebase-BOM = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBOM" }
