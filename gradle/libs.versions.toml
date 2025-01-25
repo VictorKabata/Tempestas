@@ -22,7 +22,7 @@ kotlinxDateTime = "0.5.0"
 sqlDelight = "2.0.1"
 leakCanary = "2.12"
 napier = "2.6.1"
-navigation = "2.7.6"
+navigation = "2.7.0-alpha07"
 coil = "1.4.0"
 playServicesLocation = "21.0.1"
 playServicesMaps = "18.2.0"
@@ -89,7 +89,7 @@ sqlDelight-coroutine = { module = "app.cash.sqldelight:coroutines-extensions", v
 sqlDelight-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqlDelight" }
 kotlinX-dateTime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDateTime" }
 napier = { module = "io.github.aakira:napier", version.ref = "napier" }
-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
+navigation = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigation" }
 coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMaps" }

@@ -59,8 +59,6 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
 
-    implementation(libs.navigation.compose)
-
     implementation(libs.coil)
     implementation(libs.firebase.analytics)
 

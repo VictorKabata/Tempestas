@@ -7,7 +7,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinX.serialization)
     alias(libs.plugins.buildKonfig)
-     alias(libs.plugins.compose)
+    alias(libs.plugins.compose)
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -33,6 +33,8 @@ kotlin {
             api(libs.napier)
             api(libs.kotlinX.dateTime)
 
+            implementation(libs.navigation)
+
             implementation(libs.multiplatformSettings)
             implementation(libs.multiplatformSettings.coroutines)
         }
@@ -41,8 +43,6 @@ kotlin {
             implementation(kotlin("test"))
             implementation(libs.kotlinX.coroutines.test)
             implementation(libs.ktor.mock)
-
-            implementation(libs.konveyor)
         }
 
         sourceSets["androidMain"].dependencies {
