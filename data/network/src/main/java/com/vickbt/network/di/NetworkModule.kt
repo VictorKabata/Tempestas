@@ -1,5 +1,7 @@
 package com.vickbt.network.di
 
+import com.vickbt.network.WeatherApiServiceImpl
+import com.vickbt.network.services.WeatherApiService
 import com.vickbt.network.utils.Constants.BASE_URL
 import com.vickbt.network.utils.Constants.URL_PATH
 import io.github.aakira.napier.DebugAntilog
@@ -62,5 +64,8 @@ val networkModule = module {
         }
 
     }
+
+    /**Creates a singleton instance of the WeatherApiService interface*/
+    single<WeatherApiService> { WeatherApiServiceImpl(httpClient = get()) }
 
 }

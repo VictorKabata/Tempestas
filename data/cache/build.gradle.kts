@@ -19,6 +19,8 @@ java {
 }*/
 
 dependencies {
+    implementation(libs.koin.core)
+
 //    implementation(libs.room.runtime)
 //    implementation(libs.sqlite.bundled)
 

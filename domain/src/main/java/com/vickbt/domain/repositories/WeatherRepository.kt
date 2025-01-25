@@ -7,7 +7,8 @@ interface WeatherRepository {
 
     suspend fun fetchForecastWeather(
         query: String? = null,
-        language: String = "en"
+        language: String = "en",
+        period: Int = 7
     ): Flow<Result<ForecastWeather>>
 
 }
