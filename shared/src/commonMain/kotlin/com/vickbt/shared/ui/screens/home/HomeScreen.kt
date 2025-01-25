@@ -1,8 +1,7 @@
-package com.vickbt.shared.ui.screens.home_screen
+package com.vickbt.shared.ui.screens.home
 
 import androidx.compose.runtime.Composable
 
 @Composable
 fun HomeScreen() {
-
 }

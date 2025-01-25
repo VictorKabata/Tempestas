@@ -21,5 +21,4 @@ class WeatherApiServiceImpl(private val weatherApiClient: HttpClient) : WeatherA
             parameter("days", 7)
         }.body<ForecastWeatherDto>()
     }
-
 }

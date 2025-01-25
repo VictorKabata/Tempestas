@@ -72,7 +72,6 @@ val sharedModule: Module = module {
     /**Create a singleton of [WeatherApiService]*/
     single<WeatherApiService> { WeatherApiServiceImpl(weatherApiClient = get()) }
 
-
     single<WeatherRepository> {
         WeatherDataSource(weatherApiService = get(), locationService = get())
     }

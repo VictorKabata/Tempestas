@@ -10,5 +10,4 @@ interface WeatherRepository {
         query: String? = null,
         language: String = "en"
     ): Flow<Result<ForecastWeather>>
-
 }
