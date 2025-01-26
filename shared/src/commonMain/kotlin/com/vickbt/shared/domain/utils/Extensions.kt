@@ -23,7 +23,7 @@ fun String.capitalizeEachWord(): String {
 }
 
 /**Appends degree celsius or degree fahrenheit depending on the [MeasurementOptions] passed*/
-fun Double.toTempUnitOfMeasurement(unitOfMeasurement: MeasurementOptions): String {
+fun Double.toTempUnitOfMeasurement(unitOfMeasurement: MeasurementOptions = MeasurementOptions.METRIC): String {
     val value = this.toInt()
 
     return if (unitOfMeasurement == MeasurementOptions.METRIC) {
@@ -34,7 +34,7 @@ fun Double.toTempUnitOfMeasurement(unitOfMeasurement: MeasurementOptions): Strin
 }
 
 /**Appends kilometer per hour or miles per hour depending on [MeasurementOptions] passed*/
-fun Double.toSpeedUnitOfMeasurement(unitOfMeasurement: MeasurementOptions): String {
+fun Double.toSpeedUnitOfMeasurement(unitOfMeasurement: MeasurementOptions = MeasurementOptions.METRIC): String {
     val value = this.toInt()
 
     return if (unitOfMeasurement == MeasurementOptions.METRIC) {

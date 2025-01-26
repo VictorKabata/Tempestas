@@ -8,7 +8,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
@@ -30,6 +33,7 @@ import com.vickbt.shared.domain.utils.MeasurementOptions
 import com.vickbt.shared.domain.utils.capitalizeEachWord
 import com.vickbt.shared.domain.utils.toReadableFormat
 import com.vickbt.shared.domain.utils.toTempUnitOfMeasurement
+import com.vickbt.shared.ui.components.DayCondition
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -169,28 +173,28 @@ fun HomeScreen(paddingValues: PaddingValues, viewModel: HomeViewModel = koinInje
                 }
                 //endregion
 
-                Divider(modifier = Modifier.padding(horizontal = 4.dp), thickness = 1.dp)
+                Divider(modifier = Modifier.padding(horizontal = 4.dp), thickness = 1.dp)*/
 
                 //region Weekly Forecast
-                Text(text = "This Week", fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
+                homeUiState.currentLocationWeatherForecast?.let {
+                    Text(text = "This Week", fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
 
-                LazyRow(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(4.dp)
-                ) {
-                    items(items = homeUiState.forecastWeather.forecast) {
-                        DayCondition(
-                            modifier = Modifier.size(90.dp),
-                            imageUrl = it.day.condition.icon.toImageFormat(),
-                            dayOfWeek = it.dateEpoch.dayOfWeek.toString().uppercase(),
-                            minTemp = it.day.mintemp.toTempUnitOfMeasurement(unitOfMeasurement = MeasurementOptions.METRIC),
-                            maxTemp = it.day.maxtemp.toTempUnitOfMeasurement(unitOfMeasurement = MeasurementOptions.METRIC)
-                        )
+                    LazyRow(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        items(items = homeUiState.currentLocationWeatherForecast) {
+                            DayCondition(
+                                modifier = Modifier.width(90.dp).wrapContentHeight(),
+                                imageUrl = "it.day.condition.icon.toImageFormat()",
+                                dayOfWeek = it.dt,
+                                minTemp = it.main.tempMin.toTempUnitOfMeasurement(),
+                                maxTemp = it.main.tempMax.toTempUnitOfMeasurement()
+                            )
+                        }
                     }
                 }
                 //endregion
-
-                Divider(modifier = Modifier.padding(horizontal = 4.dp), thickness = 1.dp)*/
             }
         } else if (homeUiState.error != null) {
             Text(

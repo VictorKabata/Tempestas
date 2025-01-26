@@ -21,12 +21,16 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import com.vickbt.shared.domain.utils.capitalizeEachWord
+import kotlinx.datetime.Instant
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 
 @Composable
 fun DayCondition(
     modifier: Modifier,
     imageUrl: String,
-    dayOfWeek: String,
+    dayOfWeek: Long,
     dateOfMonth: String? = null,
     minTemp: String,
     maxTemp: String
@@ -38,7 +42,8 @@ fun DayCondition(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = dayOfWeek.uppercase(),
+                text = Instant.fromEpochSeconds(dayOfWeek)
+                    .toLocalDateTime(TimeZone.UTC).dayOfWeek.name.capitalizeEachWord(),
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 16.sp,
                 maxLines = 1,
@@ -49,7 +54,7 @@ fun DayCondition(
             if (dateOfMonth != null) {
                 Text(
                     text = dateOfMonth,
-                    fontWeight = FontWeight.SemiBold,
+                    fontWeight = FontWeight.Medium,
                     fontSize = 16.sp,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
@@ -82,7 +87,7 @@ fun DayCondition(
 
                 Text(
                     text = maxTemp,
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.Medium,
                     fontSize = 14.sp,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,

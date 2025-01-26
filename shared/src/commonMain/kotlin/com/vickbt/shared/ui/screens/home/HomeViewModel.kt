@@ -33,6 +33,8 @@ class HomeViewModel(private val weatherRepository: WeatherRepository) : ViewMode
                 result.onSuccess { weatherData ->
                     val weatherForecast =
                         weatherData.list.filterNot { it.dtTxt.contains(currentDate) }
+                            .groupBy { it.dtTxt.substringBefore(" ") }
+                            .map { it.value.first() }
 
                     homeUiStateFlow.update {
                         it.copy(
