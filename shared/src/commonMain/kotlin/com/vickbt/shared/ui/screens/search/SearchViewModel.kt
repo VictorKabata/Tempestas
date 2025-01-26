@@ -2,7 +2,10 @@ package com.vickbt.shared.ui.screens.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.vickbt.shared.domain.models.WeatherData
+import com.vickbt.shared.domain.models.WeatherItem
 import com.vickbt.shared.domain.repository.WeatherRepository
+import com.vickbt.shared.ui.states.WeatherUiState
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,7 +17,8 @@ import kotlinx.datetime.toLocalDateTime
 
 class SearchViewModel(private val weatherRepository: WeatherRepository) : ViewModel() {
 
-    private val _searchUiState = MutableStateFlow(SearchUiStates(isLoading = true))
+    private val _searchUiState =
+        MutableStateFlow(WeatherUiState<WeatherData, List<WeatherItem>>(isLoading = false))
     val searchUiState = _searchUiState.asStateFlow()
 
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
@@ -23,6 +27,8 @@ class SearchViewModel(private val weatherRepository: WeatherRepository) : ViewMo
 
     fun searchLocationWeather(query: String) =
         viewModelScope.launch(coroutineExceptionHandler) {
+            _searchUiState.update { it.copy(isLoading = true) }
+
             val currentDate = Clock.System.now().toLocalDateTime(TimeZone.UTC).date.toString()
 
             weatherRepository.searchLocationWeather(query = query).collect { result ->
@@ -35,8 +41,8 @@ class SearchViewModel(private val weatherRepository: WeatherRepository) : ViewMo
                     _searchUiState.update {
                         it.copy(
                             isLoading = false,
-                            searchedLocationWeather = weatherData,
-                            searchedLocationWeatherForecast = weatherForecast
+                            locationCurrentWeather = weatherData,
+                            locationWeatherForecast = weatherForecast
                         )
                     }
                 }.onFailure {

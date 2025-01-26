@@ -81,8 +81,7 @@ fun HomeScreen(
                         .fillMaxSize()
                         .padding(innerPadding)
                         .verticalScroll(scrollState),
-                    weatherData = homeUiState,
-                    scrollState = scrollState
+                    weatherData = homeUiState
                 )
             }
         } else if (homeUiState.error != null) {

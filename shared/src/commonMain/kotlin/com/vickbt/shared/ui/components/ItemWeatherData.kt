@@ -40,7 +40,6 @@ import kotlinx.datetime.toLocalDateTime
 @Composable
 fun ItemWeatherData(
     modifier: Modifier = Modifier,
-    scrollState: ScrollState,
     weatherData: WeatherUiState<WeatherData, List<WeatherItem>>
 ) {
 
