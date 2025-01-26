@@ -14,6 +14,9 @@ plugins {
     alias(libs.plugins.jvm) apply false
     alias(libs.plugins.nativeCocoapod) apply false
 
+    alias(libs.plugins.compose)
+    alias(libs.plugins.compose.compiler)
+
     alias(libs.plugins.ktLint)
     alias(libs.plugins.detekt)
 }

@@ -6,7 +6,12 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinX.serialization)
     alias(libs.plugins.buildKonfig)
+
     alias(libs.plugins.compose)
+    alias(libs.plugins.compose.compiler)
+
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
 }
 
 kotlin {
@@ -92,4 +97,12 @@ buildkonfig {
             gradleLocalProperties(rootDir).getProperty("api_key") ?: ""
         )
     }
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
+dependencies {
+    add("kspAndroid", libs.room.compiler)
 }
