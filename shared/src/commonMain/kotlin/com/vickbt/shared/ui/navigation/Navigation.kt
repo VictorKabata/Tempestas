@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.vickbt.shared.ui.screens.home.HomeScreen
+import com.vickbt.shared.ui.screens.search.SearchScreen
 
 @Composable
 fun Navigation(paddingValues: PaddingValues) {
@@ -14,7 +15,11 @@ fun Navigation(paddingValues: PaddingValues) {
 
     NavHost(navController = navController, startDestination = NavigationItem.Home.route) {
         composable(route = NavigationItem.Home.route) {
-            HomeScreen(paddingValues = paddingValues)
+            HomeScreen(paddingValues = paddingValues, navController = navController)
+        }
+
+        composable(route = NavigationItem.Search.route) {
+            SearchScreen(paddingValues = paddingValues, navController = navController)
         }
     }
 }

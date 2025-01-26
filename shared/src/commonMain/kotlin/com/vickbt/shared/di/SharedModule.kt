@@ -12,6 +12,7 @@ import com.vickbt.shared.domain.repository.WeatherRepository
 import com.vickbt.shared.domain.utils.Constants.BASE_URL
 import com.vickbt.shared.domain.utils.Constants.URL_PATH
 import com.vickbt.shared.ui.screens.home.HomeViewModel
+import com.vickbt.shared.ui.screens.search.SearchViewModel
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
@@ -92,4 +93,5 @@ val sharedModule: Module = module {
     }
 
     viewModelOf(::HomeViewModel)
+    viewModelOf(::SearchViewModel)
 }
