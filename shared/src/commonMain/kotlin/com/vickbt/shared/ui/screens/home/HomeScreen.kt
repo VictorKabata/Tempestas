@@ -9,6 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
 @Composable
-fun HomeScreen(paddingValues:PaddingValues) {
+fun HomeScreen(paddingValues: PaddingValues) {
     Box(modifier = Modifier.fillMaxSize().background(color = Color.Red))
 }

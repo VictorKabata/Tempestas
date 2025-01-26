@@ -14,7 +14,7 @@ fun Navigation(paddingValues: PaddingValues) {
 
     NavHost(navController = navController, startDestination = NavigationItem.Home.route) {
         composable(route = NavigationItem.Home.route) {
-            HomeScreen(paddingValues=paddingValues)
+            HomeScreen(paddingValues = paddingValues)
         }
     }
 }
