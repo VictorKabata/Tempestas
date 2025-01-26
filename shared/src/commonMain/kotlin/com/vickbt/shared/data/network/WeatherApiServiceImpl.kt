@@ -10,7 +10,10 @@ import io.ktor.client.request.parameter
 /**Weather API*/
 class WeatherApiServiceImpl(private val weatherApiClient: HttpClient) : WeatherApiService {
 
-    override suspend fun fetchCurrentLocationWeather(query: String): WeatherDataDto {
+    override suspend fun fetchCurrentLocationWeather(
+        query: String,
+        vararg exclude: String?
+    ): WeatherDataDto {
         return weatherApiClient.get("forecast") {
             parameter("q", query)
         }.body<WeatherDataDto>()
@@ -18,7 +21,8 @@ class WeatherApiServiceImpl(private val weatherApiClient: HttpClient) : WeatherA
 
     override suspend fun searchLocationWeather(
         latitude: Double,
-        longitude: Double
+        longitude: Double,
+        vararg exclude: String?
     ): WeatherDataDto {
         return weatherApiClient.get("forecast") {
             parameter("lat", latitude)

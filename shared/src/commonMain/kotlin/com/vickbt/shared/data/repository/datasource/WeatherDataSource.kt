@@ -14,17 +14,15 @@ class WeatherDataSource(
     private val locationService: LocationService
 ) : WeatherRepository {
 
-    override suspend fun fetchCurrentLocationWeather(query: String): Flow<Result<WeatherData>> {
+    override suspend fun searchLocationWeather(query: String): Flow<Result<WeatherData>> {
         return safeApiCall {
             weatherApiService.fetchCurrentLocationWeather(query = query).toDomain()
         }
     }
 
-    override suspend fun searchLocationWeather(
-        latitude: Double,
-        longitude: Double
-    ): Flow<Result<WeatherData>> {
+    override suspend fun fetchCurrentLocationWeather(): Flow<Result<WeatherData>> {
         val location = locationService.requestLocationUpdates().firstOrNull()
+
         return safeApiCall {
             weatherApiService.searchLocationWeather(
                 latitude = location?.latitude ?: 0.0,
