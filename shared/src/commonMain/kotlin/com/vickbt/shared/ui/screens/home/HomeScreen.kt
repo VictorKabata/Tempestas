@@ -1,40 +1,10 @@
 package com.vickbt.shared.ui.screens.home
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
+import android.util.Log
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Divider
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import coil3.compose.AsyncImage
-import com.vickbt.shared.domain.utils.MeasurementOptions
-import com.vickbt.shared.domain.utils.toImageFormat
-import com.vickbt.shared.domain.utils.toReadableFormat
-import com.vickbt.shared.domain.utils.toSpeedUnitOfMeasurement
-import com.vickbt.shared.domain.utils.toTempUnitOfMeasurement
-import com.vickbt.shared.ui.components.DayCondition
-import com.vickbt.shared.ui.components.ExtraCondition
 import org.koin.compose.koinInject
 
 @Composable
@@ -42,7 +12,9 @@ fun HomeScreen(paddingValues: PaddingValues, viewModel: HomeViewModel = koinInje
     val homeUiState = viewModel.homeUiState.collectAsState().value
     val scrollState = rememberScrollState()
 
-    Box(
+    Log.e("VicKbt", "Home UI State: $homeUiState")
+
+    /*Box(
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 12.dp, vertical = 8.dp)
@@ -203,5 +175,5 @@ fun HomeScreen(paddingValues: PaddingValues, viewModel: HomeViewModel = koinInje
                 textAlign = TextAlign.Center
             )
         }
-    }
+    }*/
 }

@@ -3,7 +3,7 @@ package com.vickbt.shared.domain.utils
 /**Application constants*/
 object Constants {
 
-    const val BASE_URL = "https://api.openweathermap.org"
+    const val BASE_URL = "api.openweathermap.org"
     const val URL_PATH = "data/2.5/"
 
     // Multiplatform-settings keys
