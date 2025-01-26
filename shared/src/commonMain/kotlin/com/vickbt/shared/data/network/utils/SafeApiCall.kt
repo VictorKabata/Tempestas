@@ -1,7 +1,6 @@
 package com.vickbt.shared.data.network.utils
 
 import com.vickbt.shared.data.network.models.ApiErrorDto
-import com.vickbt.shared.domain.models.ApiError
 import io.ktor.client.call.body
 import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.RedirectResponseException

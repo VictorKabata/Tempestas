@@ -8,14 +8,6 @@ import com.vickbt.shared.data.network.models.ForecastWeatherDto
 import com.vickbt.shared.data.network.models.HistoryForecastDto
 import com.vickbt.shared.data.network.models.HourForecastDto
 import com.vickbt.shared.data.network.models.LocationDto
-import com.vickbt.shared.domain.models.Condition
-import com.vickbt.shared.domain.models.Current
-import com.vickbt.shared.domain.models.DayForecast
-import com.vickbt.shared.domain.models.ForecastDay
-import com.vickbt.shared.domain.models.ForecastWeather
-import com.vickbt.shared.domain.models.HistoryForecast
-import com.vickbt.shared.domain.models.HourForecast
-import com.vickbt.shared.domain.models.Location
 import com.vickbt.shared.domain.utils.MeasurementOptions
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone

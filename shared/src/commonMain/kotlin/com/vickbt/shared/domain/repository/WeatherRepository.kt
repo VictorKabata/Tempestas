@@ -1,6 +1,5 @@
 package com.vickbt.shared.domain.repository
 
-import com.vickbt.shared.domain.models.ForecastWeather
 import kotlinx.coroutines.flow.Flow
 
 interface WeatherRepository {

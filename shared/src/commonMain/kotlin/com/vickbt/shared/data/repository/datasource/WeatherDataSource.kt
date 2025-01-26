@@ -3,7 +3,6 @@ package com.vickbt.shared.data.repository.datasource
 import com.vickbt.shared.data.network.services.WeatherApiService
 import com.vickbt.shared.data.network.utils.safeApiCall
 import com.vickbt.shared.data.repository.mappers.toDomain
-import com.vickbt.shared.domain.models.ForecastWeather
 import com.vickbt.shared.domain.repository.WeatherRepository
 import com.vickbt.shared.domain.utils.MeasurementOptions
 import kotlinx.coroutines.flow.Flow
