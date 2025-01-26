@@ -32,8 +32,10 @@ import coil3.compose.AsyncImage
 import com.vickbt.shared.domain.utils.MeasurementOptions
 import com.vickbt.shared.domain.utils.capitalizeEachWord
 import com.vickbt.shared.domain.utils.toReadableFormat
+import com.vickbt.shared.domain.utils.toSpeedUnitOfMeasurement
 import com.vickbt.shared.domain.utils.toTempUnitOfMeasurement
 import com.vickbt.shared.ui.components.DayCondition
+import com.vickbt.shared.ui.components.ExtraCondition
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -133,7 +135,7 @@ fun HomeScreen(paddingValues: PaddingValues, viewModel: HomeViewModel = koinInje
 
                 Divider(modifier = Modifier.padding(horizontal = 4.dp), thickness = 1.dp)
 
-                /*//region Extra Conditions
+                //region Extra Conditions
                 LazyRow(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -144,36 +146,28 @@ fun HomeScreen(paddingValues: PaddingValues, viewModel: HomeViewModel = koinInje
                         ExtraCondition(
                             icon = "R.drawable.humidity_percentage",
                             title = "Humidity",
-                            value = "${homeUiState.forecastWeather.current.humidity}%"
+                            value = "${homeUiState.currentLocationWeather.list.first().main.humidity}%"
                         )
                     }
                     item {
                         ExtraCondition(
                             icon = "R.drawable.thermometer",
                             title = "Feels Like",
-                            value = homeUiState.forecastWeather.current.temp
-                                .toTempUnitOfMeasurement(unitOfMeasurement = MeasurementOptions.METRIC)
+                            value = homeUiState.currentLocationWeather.list.first().main.feelsLike.toTempUnitOfMeasurement()
                         )
                     }
                     item {
                         ExtraCondition(
                             icon = "R.drawable.wind",
                             title = "Wind",
-                            value = homeUiState.forecastWeather.current.wind
-                                .toSpeedUnitOfMeasurement(unitOfMeasurement = MeasurementOptions.METRIC)
-                        )
-                    }
-                    item {
-                        ExtraCondition(
-                            icon = "R.drawable.uv_index",
-                            title = "UV Index",
-                            value = "${homeUiState.forecastWeather.current.uv}"
+                            value = homeUiState.currentLocationWeather.list.first().wind.speed
+                                .toSpeedUnitOfMeasurement()
                         )
                     }
                 }
                 //endregion
 
-                Divider(modifier = Modifier.padding(horizontal = 4.dp), thickness = 1.dp)*/
+                Divider(modifier = Modifier.padding(horizontal = 4.dp), thickness = 1.dp)
 
                 //region Weekly Forecast
                 homeUiState.currentLocationWeatherForecast?.let {
