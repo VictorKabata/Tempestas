@@ -1,4 +1,4 @@
-package com.vickbt.shared.ui.screens.home
+package com.vickbt.shared.ui.screens.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,32 +15,30 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
-class HomeViewModel(private val weatherRepository: WeatherRepository) : ViewModel() {
+class SearchViewModel(private val weatherRepository: WeatherRepository) : ViewModel() {
 
-    private val _homeUiState =
-        MutableStateFlow(WeatherUiState<WeatherData, List<WeatherItem>>(isLoading = true))
-    val homeUiState = _homeUiState.asStateFlow()
+    private val _searchUiState =
+        MutableStateFlow(WeatherUiState<WeatherData, List<WeatherItem>>(isLoading = false))
+    val searchUiState = _searchUiState.asStateFlow()
 
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
-        _homeUiState.update { it.copy(isLoading = false, error = exception.message) }
+        _searchUiState.update { it.copy(isLoading = false, error = exception.message) }
     }
 
-    init {
-        fetchCurrentLocationWeather()
-    }
-
-    fun fetchCurrentLocationWeather() =
+    fun searchLocationWeather(query: String) =
         viewModelScope.launch(coroutineExceptionHandler) {
+            _searchUiState.update { it.copy(isLoading = true) }
+
             val currentDate = Clock.System.now().toLocalDateTime(TimeZone.UTC).date.toString()
 
-            weatherRepository.fetchCurrentLocationWeather().collect { result ->
+            weatherRepository.searchLocationWeather(query = query).collect { result ->
                 result.onSuccess { weatherData ->
                     val weatherForecast =
                         weatherData.list.filterNot { it.dtTxt.contains(currentDate) }
                             .groupBy { it.dtTxt.substringBefore(" ") }
                             .map { it.value.first() }
 
-                    _homeUiState.update {
+                    _searchUiState.update {
                         it.copy(
                             isLoading = false,
                             locationCurrentWeather = weatherData,
@@ -48,7 +46,7 @@ class HomeViewModel(private val weatherRepository: WeatherRepository) : ViewMode
                         )
                     }
                 }.onFailure {
-                    _homeUiState.update { it.copy(isLoading = false, error = it.error) }
+                    _searchUiState.update { it.copy(isLoading = false, error = it.error) }
                 }
             }
         }
