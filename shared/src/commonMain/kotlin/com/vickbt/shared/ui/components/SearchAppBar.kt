@@ -12,6 +12,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -70,6 +71,14 @@ fun SearchAppBar(
                     imageVector = Icons.Rounded.Search,
                     contentDescription = "Search Icon"
                 )
+            },
+            trailingIcon = {
+                IconButton(onClick = { searchQuery = "" }) {
+                    Icon(
+                        imageVector = Icons.Rounded.Close,
+                        contentDescription = "Close Icon"
+                    )
+                }
             },
             modifier = Modifier
                 .weight(1f)

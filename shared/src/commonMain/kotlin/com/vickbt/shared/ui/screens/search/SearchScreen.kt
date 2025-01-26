@@ -29,8 +29,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.vickbt.shared.ui.components.SearchAppBar
 import com.vickbt.shared.ui.components.ItemWeatherData
+import com.vickbt.shared.ui.components.SearchAppBar
 import org.koin.compose.koinInject
 
 @Composable
@@ -54,22 +54,22 @@ fun SearchScreen(
 
     Box(modifier = Modifier.fillMaxSize()) {
 
-        if (searchUiState.isLoading) {
-            CircularProgressIndicator(
+        Scaffold(
+            modifier = Modifier.padding(paddingValues),
+            topBar = {
+                SearchAppBar(
+                    modifier = Modifier,
+                    onSearch = { searchQuery = it },
+                    onBackClick = { navController.navigateUp() })
+            }
+        ) { innerPadding ->
+            Box(
                 modifier = Modifier
-                    .testTag("loading_progress_bar")
-                    .align(Alignment.Center)
-            )
-        } else {
-            Scaffold(
-                modifier = Modifier.padding(paddingValues),
-                topBar = {
-                    SearchAppBar(
-                        modifier = Modifier,
-                        onSearch = { searchQuery = it },
-                        onBackClick = { navController.navigateUp() })
-                }
-            ) { innerPadding ->
+                    .fillMaxSize()
+                    .padding(innerPadding)
+                    .padding(horizontal = 12.dp, vertical = 8.dp)
+            ) {
+
                 if (searchUiState.isLoading) {
                     CircularProgressIndicator(
                         modifier = Modifier
@@ -93,19 +93,11 @@ fun SearchScreen(
                     ItemWeatherData(
                         modifier = Modifier.testTag("weather_info_column")
                             .fillMaxSize()
-                            .padding(innerPadding)
                             .verticalScroll(scrollState),
                         weatherData = searchUiState,
                     )
                 }
             }
-
-            /*SearchAppBar(
-                modifier = Modifier,
-                onSearch = { searchQuery = it },
-                onBackPressed = { navController.navigateUp() }) {
-
-            }*/
         }
     }
 
