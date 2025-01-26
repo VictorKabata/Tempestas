@@ -1,9 +1,7 @@
 package com.vickbt.shared.ui.components
 
-import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -11,7 +9,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -42,7 +39,6 @@ fun ItemWeatherData(
     modifier: Modifier = Modifier,
     weatherData: WeatherUiState<WeatherData, List<WeatherItem>>
 ) {
-
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(space = 12.dp)
@@ -173,5 +169,4 @@ fun ItemWeatherData(
         }
         //endregion
     }
-
 }

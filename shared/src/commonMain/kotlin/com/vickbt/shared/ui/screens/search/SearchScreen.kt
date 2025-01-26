@@ -39,7 +39,6 @@ fun SearchScreen(
     navController: NavController,
     viewModel: SearchViewModel = koinInject()
 ) {
-
     var searchQuery by remember { mutableStateOf<String?>(null) }
 
     val searchUiState = viewModel.searchUiState.collectAsState().value
@@ -53,14 +52,14 @@ fun SearchScreen(
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
-
         Scaffold(
             modifier = Modifier.padding(paddingValues),
             topBar = {
                 SearchAppBar(
                     modifier = Modifier,
                     onSearch = { searchQuery = it },
-                    onBackClick = { navController.navigateUp() })
+                    onBackClick = { navController.navigateUp() }
+                )
             }
         ) { innerPadding ->
             Box(
@@ -69,7 +68,6 @@ fun SearchScreen(
                     .padding(innerPadding)
                     .padding(horizontal = 12.dp, vertical = 8.dp)
             ) {
-
                 if (searchUiState.isLoading) {
                     CircularProgressIndicator(
                         modifier = Modifier
@@ -100,5 +98,4 @@ fun SearchScreen(
             }
         }
     }
-
 }
