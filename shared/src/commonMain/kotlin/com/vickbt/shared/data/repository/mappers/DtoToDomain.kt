@@ -1,13 +1,5 @@
 package com.vickbt.shared.data.repository.mappers
 
-import com.vickbt.shared.data.network.models.ConditionDto
-import com.vickbt.shared.data.network.models.CurrentDto
-import com.vickbt.shared.data.network.models.DayForecastDto
-import com.vickbt.shared.data.network.models.ForecastDayDto
-import com.vickbt.shared.data.network.models.ForecastWeatherDto
-import com.vickbt.shared.data.network.models.HistoryForecastDto
-import com.vickbt.shared.data.network.models.HourForecastDto
-import com.vickbt.shared.data.network.models.LocationDto
 import com.vickbt.shared.domain.utils.MeasurementOptions
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
