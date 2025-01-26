@@ -1,10 +1,44 @@
 package com.vickbt.shared.ui.screens.home
 
-import android.util.Log
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Divider
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import coil3.compose.AsyncImage
+import com.vickbt.shared.domain.utils.MeasurementOptions
+import com.vickbt.shared.domain.utils.capitalizeEachWord
+import com.vickbt.shared.domain.utils.toImageFormat
+import com.vickbt.shared.domain.utils.toReadableFormat
+import com.vickbt.shared.domain.utils.toSpeedUnitOfMeasurement
+import com.vickbt.shared.domain.utils.toTempUnitOfMeasurement
+import com.vickbt.shared.ui.components.DayCondition
+import com.vickbt.shared.ui.components.ExtraCondition
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import org.koin.compose.koinInject
 
 @Composable
@@ -12,9 +46,7 @@ fun HomeScreen(paddingValues: PaddingValues, viewModel: HomeViewModel = koinInje
     val homeUiState = viewModel.homeUiState.collectAsState().value
     val scrollState = rememberScrollState()
 
-    Log.e("VicKbt", "Home UI State: $homeUiState")
-
-    /*Box(
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 12.dp, vertical = 8.dp)
@@ -25,7 +57,7 @@ fun HomeScreen(paddingValues: PaddingValues, viewModel: HomeViewModel = koinInje
                     .testTag("loading_progress_bar")
                     .align(Alignment.Center)
             )
-        } else if (homeUiState.forecastWeather != null) {
+        } else if (homeUiState.currentLocationWeather != null) {
             Column(
                 modifier = Modifier
                     .testTag("weather_info_column")
@@ -48,17 +80,19 @@ fun HomeScreen(paddingValues: PaddingValues, viewModel: HomeViewModel = koinInje
                 ) {
                     Text(
                         modifier = Modifier.testTag("location_text"),
-                        text = "${homeUiState.forecastWeather.location.name}," +
-                            " ${homeUiState.forecastWeather.location.country}",
+                        text = "${homeUiState.currentLocationWeather.city.name}," +
+                                " ${homeUiState.currentLocationWeather.city.country}",
                         fontWeight = FontWeight.Black,
                         fontSize = 24.sp,
-                        maxLines = 1,
+                        maxLines = 2,
+                        textAlign = TextAlign.Center,
                         overflow = TextOverflow.Ellipsis
                     )
 
                     Text(
                         modifier = Modifier.testTag("date_text"),
-                        text = homeUiState.forecastWeather.location.localtime.toReadableFormat(),
+                        text = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
+                            .toReadableFormat(),
                         fontWeight = FontWeight.SemiBold,
                         fontSize = 20.sp,
                         maxLines = 1,
@@ -76,21 +110,20 @@ fun HomeScreen(paddingValues: PaddingValues, viewModel: HomeViewModel = koinInje
                 ) {
                     AsyncImage(
                         modifier = Modifier.size(150.dp),
-                        model = homeUiState.forecastWeather.current.condition.icon.toImageFormat(),
-                        contentDescription = homeUiState.forecastWeather.current.condition.text,
+                        model = "homeUiState.forecastWeather.current.condition.icon.toImageFormat()",
+                        contentDescription = "homeUiState.forecastWeather.current.condition.text",
                         contentScale = ContentScale.Crop
                     )
 
                     Text(
-                        text = homeUiState.forecastWeather.current.temp
-                            .toTempUnitOfMeasurement(unitOfMeasurement = MeasurementOptions.METRIC),
+                        text = homeUiState.currentLocationWeather.list.first().main.temp.toString(),
                         fontSize = 80.sp,
                         fontWeight = FontWeight.ExtraBold,
                         maxLines = 1
                     )
 
                     Text(
-                        text = homeUiState.forecastWeather.current.condition.text,
+                        text = homeUiState.currentLocationWeather.list.first().weather.first().description.capitalizeEachWord(),
                         fontSize = 20.sp,
                         fontWeight = FontWeight.SemiBold,
                         maxLines = 1
@@ -100,7 +133,7 @@ fun HomeScreen(paddingValues: PaddingValues, viewModel: HomeViewModel = koinInje
 
                 Divider(modifier = Modifier.padding(horizontal = 4.dp), thickness = 1.dp)
 
-                //region Extra Conditions
+                /*//region Extra Conditions
                 LazyRow(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -161,7 +194,7 @@ fun HomeScreen(paddingValues: PaddingValues, viewModel: HomeViewModel = koinInje
                 }
                 //endregion
 
-                Divider(modifier = Modifier.padding(horizontal = 4.dp), thickness = 1.dp)
+                Divider(modifier = Modifier.padding(horizontal = 4.dp), thickness = 1.dp)*/
             }
         } else if (homeUiState.error != null) {
             Text(
@@ -175,5 +208,5 @@ fun HomeScreen(paddingValues: PaddingValues, viewModel: HomeViewModel = koinInje
                 textAlign = TextAlign.Center
             )
         }
-    }*/
+    }
 }

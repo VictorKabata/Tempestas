@@ -20,7 +20,6 @@ class HomeViewModel(private val weatherRepository: WeatherRepository) : ViewMode
 
     init {
         fetchCurrentLocationWeather()
-//        searchLocationWeather(query = "Nairobi")
     }
 
     fun fetchCurrentLocationWeather() =
