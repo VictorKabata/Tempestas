@@ -1,4 +1,4 @@
-package com.vickbt.tempestas.ui.theme
+package com.vickbt.shared.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -1,4 +1,4 @@
-package com.vickbt.tempestas.ui.theme
+package com.vickbt.shared.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -9,6 +9,9 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import coil3.annotation.ExperimentalCoilApi
+import coil3.compose.setSingletonImageLoaderFactory
+import com.vickbt.shared.ui.utils.getAsyncImageLoader
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
@@ -32,6 +35,7 @@ private val LightColorScheme = lightColorScheme(
      */
 )
 
+@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun TempestasTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
@@ -47,6 +51,10 @@ fun TempestasTheme(
 
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
+    }
+
+    setSingletonImageLoaderFactory { context ->
+        context.getAsyncImageLoader()
     }
 
     MaterialTheme(

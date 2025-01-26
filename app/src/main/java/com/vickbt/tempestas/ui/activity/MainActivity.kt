@@ -24,7 +24,7 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import com.vickbt.shared.ui.navigation.Navigation
-import com.vickbt.tempestas.ui.theme.TempestasTheme
+import com.vickbt.shared.ui.theme.TempestasTheme
 import kotlinx.coroutines.launch
 import utils.areLocationPermissionsAlreadyGranted
 import utils.decideCurrentPermissionStatus
