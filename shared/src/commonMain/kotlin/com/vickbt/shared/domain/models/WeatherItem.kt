@@ -10,5 +10,5 @@ data class WeatherItem(
     val pop: Double,
     val rain: Rain?,
     val sys: Sys,
-    val dt_txt: String
+    val dtTxt: String
 )
