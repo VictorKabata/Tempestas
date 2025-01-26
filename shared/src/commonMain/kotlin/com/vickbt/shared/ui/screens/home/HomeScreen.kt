@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
@@ -30,12 +28,8 @@ import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.vickbt.shared.domain.utils.MeasurementOptions
 import com.vickbt.shared.domain.utils.capitalizeEachWord
-import com.vickbt.shared.domain.utils.toImageFormat
 import com.vickbt.shared.domain.utils.toReadableFormat
-import com.vickbt.shared.domain.utils.toSpeedUnitOfMeasurement
 import com.vickbt.shared.domain.utils.toTempUnitOfMeasurement
-import com.vickbt.shared.ui.components.DayCondition
-import com.vickbt.shared.ui.components.ExtraCondition
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -116,7 +110,9 @@ fun HomeScreen(paddingValues: PaddingValues, viewModel: HomeViewModel = koinInje
                     )
 
                     Text(
-                        text = homeUiState.currentLocationWeather.list.first().main.temp.toString(),
+                        text = homeUiState.currentLocationWeather.list.first().main.temp.toTempUnitOfMeasurement(
+                            MeasurementOptions.METRIC
+                        ),
                         fontSize = 80.sp,
                         fontWeight = FontWeight.ExtraBold,
                         maxLines = 1
