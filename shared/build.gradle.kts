@@ -38,6 +38,8 @@ kotlin {
 
             implementation(libs.navigation)
 
+            implementation(libs.bundles.coil)
+
             implementation(libs.multiplatformSettings)
             implementation(libs.multiplatformSettings.coroutines)
         }

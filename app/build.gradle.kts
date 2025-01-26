@@ -68,8 +68,6 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
 
-    implementation(libs.coil)
-
     // implementation(libs.firebase.analytics)
 
     testImplementation(libs.androidX.junit)
