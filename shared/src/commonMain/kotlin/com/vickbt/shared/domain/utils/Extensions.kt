@@ -1,5 +1,11 @@
 package com.vickbt.shared.domain.utils
 
+import coil3.ImageLoader
+import coil3.PlatformContext
+import coil3.memory.MemoryCache
+import coil3.request.CachePolicy
+import coil3.request.crossfade
+import coil3.util.DebugLogger
 import kotlinx.datetime.LocalDateTime
 
 /**Format LocalDate time to human readable format ie. Monday, 01 January 1990*/
@@ -42,3 +48,12 @@ fun Double.toSpeedUnitOfMeasurement(unitOfMeasurement: MeasurementOptions): Stri
 fun String.toImageFormat(): String {
     return "https:$this"
 }
+
+fun PlatformContext.getAsyncImageLoader() = ImageLoader.Builder(this)
+    .crossfade(true)
+    .memoryCachePolicy(CachePolicy.ENABLED)
+    .memoryCache {
+        MemoryCache.Builder().maxSizePercent(this, 0.3).strongReferencesEnabled(true).build()
+    }
+    .logger(DebugLogger())
+    .build()

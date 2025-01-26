@@ -13,12 +13,13 @@ class WeatherApiServiceImpl(private val weatherApiClient: HttpClient) : WeatherA
     /**Return weather forecast for the next 7 days/ 1 week*/
     override suspend fun fetchForecastWeather(
         query: String,
-        language: String
+        language: String,
+        period: Int
     ): ForecastWeatherDto {
         return weatherApiClient.get("forecast.json") {
             parameter("q", query)
             parameter("lang", language)
-            parameter("days", 7)
+            parameter("days", period)
         }.body<ForecastWeatherDto>()
     }
 }

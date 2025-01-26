@@ -13,10 +13,12 @@ activity-compose = "1.9.2"
 compose-bom = "2023.08.00"
 coroutines = "1.7.3"
 ktor = "2.3.7"
-koinCore = "3.5.3"
-koinCompose = "1.1.2"
-koinAndroid = "3.5.3"
-koinAndroidxCompose = "3.5.3"
+
+koinCore = "3.5.6"
+koinCompose = "1.1.5"
+koinAndroid = "3.5.6"
+koinAndroidxCompose = "3.5.6"
+koinComposeViewModel = "1.2.0-Beta5"
 kotlinxSerializationJson = "1.6.2"
 kotlinxDateTime = "0.5.0"
 sqlDelight = "2.0.1"
@@ -76,6 +78,7 @@ koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinAndroid" }
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinAndroidxCompose" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinCompose" }
+koin-composeViewModel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koinComposeViewModel" }
 kotlinX-serializationJson = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 ktor-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }

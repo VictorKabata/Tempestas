@@ -23,6 +23,7 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.ui)
+            implementation(compose.materialIconsExtended)
 
             implementation(libs.ktor.core)
             implementation(libs.ktor.cio)
@@ -32,7 +33,10 @@ kotlin {
             implementation(libs.ktor.logging)
 
             api(libs.coroutines.core)
+
             api(libs.koin.core)
+            implementation(libs.koin.composeViewModel)
+
             api(libs.napier)
             api(libs.kotlinX.dateTime)
 

@@ -1,7 +1,6 @@
 package com.vickbt.shared.ui.components
 
 import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
@@ -15,7 +14,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -26,8 +24,8 @@ import coil3.compose.AsyncImage
 @Composable
 fun ExtraCondition(
     modifier: Modifier = Modifier,
-    @DrawableRes icon: Int,
-    @StringRes title: Int,
+    icon: String,
+    title: String,
     value: String
 ) {
     Card(
@@ -44,12 +42,12 @@ fun ExtraCondition(
             AsyncImage(
                 modifier = Modifier.size(24.dp),
                 model = icon,
-                contentDescription = stringResource(id = title),
+                contentDescription = title,
                 contentScale = ContentScale.Crop
             )
 
             Text(
-                text = stringResource(id = title).uppercase(),
+                text = title.uppercase(),
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 10.sp,
                 maxLines = 1,

@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import coil3.annotation.ExperimentalCoilApi
 import coil3.compose.setSingletonImageLoaderFactory
-import com.vickbt.shared.ui.utils.getAsyncImageLoader
+import com.vickbt.shared.domain.utils.getAsyncImageLoader
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
