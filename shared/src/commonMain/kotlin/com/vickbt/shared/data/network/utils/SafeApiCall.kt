@@ -39,7 +39,7 @@ internal suspend fun parseNetworkError(
     val error = errorResponse?.body<ApiErrorDto>()
 
     throw ApiError(
-        code = error?.code ?: 0,
-        error = error?.message ?: exception?.message ?: "Unknown error occurred"
+        code = error?.code.toString(),
+        description = error?.description ?: exception?.message ?: "Unknown error occurred"
     )
 }

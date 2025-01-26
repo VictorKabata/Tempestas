@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalSerializationApi::class)
+
 package com.vickbt.shared.di
 
 import android.content.Context
@@ -23,6 +25,7 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.http.URLProtocol
 import io.ktor.http.path
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import org.koin.compose.viewmodel.dsl.viewModelOf
 import org.koin.core.module.Module
@@ -44,7 +47,7 @@ val sharedModule: Module = module {
                     host = BASE_URL
                     path(URL_PATH)
                     parameters.append(
-                        "key",
+                        "APPID",
                         BuildKonfig.API_KEY
                     )
                 }
@@ -64,8 +67,10 @@ val sharedModule: Module = module {
             install(ContentNegotiation) {
                 json(
                     Json {
-                        ignoreUnknownKeys = true
+                        explicitNulls = false
+                        prettyPrint = true
                         isLenient = true
+                        ignoreUnknownKeys = true
                     }
                 )
             }

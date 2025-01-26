@@ -1,6 +1,6 @@
 package com.vickbt.shared.data.network
 
-import com.vickbt.shared.data.network.models.ForecastWeatherDto
+import com.vickbt.shared.data.network.models.WeatherDataDto
 import com.vickbt.shared.data.network.services.WeatherApiService
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -10,16 +10,27 @@ import io.ktor.client.request.parameter
 /**Weather API*/
 class WeatherApiServiceImpl(private val weatherApiClient: HttpClient) : WeatherApiService {
 
-    /**Return weather forecast for the next 7 days/ 1 week*/
-    override suspend fun fetchForecastWeather(
+    override suspend fun fetchCurrentLocationWeather(
         query: String,
-        language: String,
-        period: Int
-    ): ForecastWeatherDto {
-        return weatherApiClient.get("forecast.json") {
+        units: String,
+        vararg exclude: String?
+    ): WeatherDataDto {
+        return weatherApiClient.get("forecast") {
             parameter("q", query)
-            parameter("lang", language)
-            parameter("days", period)
-        }.body<ForecastWeatherDto>()
+            parameter("units", units)
+        }.body<WeatherDataDto>()
+    }
+
+    override suspend fun searchLocationWeather(
+        latitude: Double,
+        longitude: Double,
+        units: String,
+        vararg exclude: String?
+    ): WeatherDataDto {
+        return weatherApiClient.get("forecast") {
+            parameter("lat", latitude)
+            parameter("lon", longitude)
+            parameter("units", units)
+        }.body<WeatherDataDto>()
     }
 }

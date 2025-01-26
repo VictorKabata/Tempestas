@@ -4,7 +4,6 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ForecastDto(
-    @SerialName("forecastday")
-    val forecastday: List<ForecastDayDto>
+data class RainDto(
+    @SerialName("3h") val threeHourVolume: Double
 )

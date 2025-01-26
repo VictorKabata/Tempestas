@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -29,12 +30,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.vickbt.shared.domain.utils.MeasurementOptions
-import com.vickbt.shared.domain.utils.toImageFormat
+import com.vickbt.shared.domain.utils.capitalizeEachWord
 import com.vickbt.shared.domain.utils.toReadableFormat
 import com.vickbt.shared.domain.utils.toSpeedUnitOfMeasurement
 import com.vickbt.shared.domain.utils.toTempUnitOfMeasurement
 import com.vickbt.shared.ui.components.DayCondition
 import com.vickbt.shared.ui.components.ExtraCondition
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import org.koin.compose.koinInject
 
 @Composable
@@ -53,7 +57,7 @@ fun HomeScreen(paddingValues: PaddingValues, viewModel: HomeViewModel = koinInje
                     .testTag("loading_progress_bar")
                     .align(Alignment.Center)
             )
-        } else if (homeUiState.forecastWeather != null) {
+        } else if (homeUiState.currentLocationWeather != null) {
             Column(
                 modifier = Modifier
                     .testTag("weather_info_column")
@@ -76,17 +80,19 @@ fun HomeScreen(paddingValues: PaddingValues, viewModel: HomeViewModel = koinInje
                 ) {
                     Text(
                         modifier = Modifier.testTag("location_text"),
-                        text = "${homeUiState.forecastWeather.location.name}," +
-                            " ${homeUiState.forecastWeather.location.country}",
+                        text = "${homeUiState.currentLocationWeather.city.name}," +
+                                " ${homeUiState.currentLocationWeather.city.country}",
                         fontWeight = FontWeight.Black,
                         fontSize = 24.sp,
-                        maxLines = 1,
+                        maxLines = 2,
+                        textAlign = TextAlign.Center,
                         overflow = TextOverflow.Ellipsis
                     )
 
                     Text(
                         modifier = Modifier.testTag("date_text"),
-                        text = homeUiState.forecastWeather.location.localtime.toReadableFormat(),
+                        text = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
+                            .toReadableFormat(),
                         fontWeight = FontWeight.SemiBold,
                         fontSize = 20.sp,
                         maxLines = 1,
@@ -104,21 +110,22 @@ fun HomeScreen(paddingValues: PaddingValues, viewModel: HomeViewModel = koinInje
                 ) {
                     AsyncImage(
                         modifier = Modifier.size(150.dp),
-                        model = homeUiState.forecastWeather.current.condition.icon.toImageFormat(),
-                        contentDescription = homeUiState.forecastWeather.current.condition.text,
+                        model = "homeUiState.forecastWeather.current.condition.icon.toImageFormat()",
+                        contentDescription = "homeUiState.forecastWeather.current.condition.text",
                         contentScale = ContentScale.Crop
                     )
 
                     Text(
-                        text = homeUiState.forecastWeather.current.temp
-                            .toTempUnitOfMeasurement(unitOfMeasurement = MeasurementOptions.METRIC),
+                        text = homeUiState.currentLocationWeather.list.first().main.temp.toTempUnitOfMeasurement(
+                            MeasurementOptions.METRIC
+                        ),
                         fontSize = 80.sp,
                         fontWeight = FontWeight.ExtraBold,
                         maxLines = 1
                     )
 
                     Text(
-                        text = homeUiState.forecastWeather.current.condition.text,
+                        text = homeUiState.currentLocationWeather.list.first().weather.first().description.capitalizeEachWord(),
                         fontSize = 20.sp,
                         fontWeight = FontWeight.SemiBold,
                         maxLines = 1
@@ -139,30 +146,22 @@ fun HomeScreen(paddingValues: PaddingValues, viewModel: HomeViewModel = koinInje
                         ExtraCondition(
                             icon = "R.drawable.humidity_percentage",
                             title = "Humidity",
-                            value = "${homeUiState.forecastWeather.current.humidity}%"
+                            value = "${homeUiState.currentLocationWeather.list.first().main.humidity}%"
                         )
                     }
                     item {
                         ExtraCondition(
                             icon = "R.drawable.thermometer",
                             title = "Feels Like",
-                            value = homeUiState.forecastWeather.current.temp
-                                .toTempUnitOfMeasurement(unitOfMeasurement = MeasurementOptions.METRIC)
+                            value = homeUiState.currentLocationWeather.list.first().main.feelsLike.toTempUnitOfMeasurement()
                         )
                     }
                     item {
                         ExtraCondition(
                             icon = "R.drawable.wind",
                             title = "Wind",
-                            value = homeUiState.forecastWeather.current.wind
-                                .toSpeedUnitOfMeasurement(unitOfMeasurement = MeasurementOptions.METRIC)
-                        )
-                    }
-                    item {
-                        ExtraCondition(
-                            icon = "R.drawable.uv_index",
-                            title = "UV Index",
-                            value = "${homeUiState.forecastWeather.current.uv}"
+                            value = homeUiState.currentLocationWeather.list.first().wind.speed
+                                .toSpeedUnitOfMeasurement()
                         )
                     }
                 }
@@ -171,25 +170,25 @@ fun HomeScreen(paddingValues: PaddingValues, viewModel: HomeViewModel = koinInje
                 Divider(modifier = Modifier.padding(horizontal = 4.dp), thickness = 1.dp)
 
                 //region Weekly Forecast
-                Text(text = "This Week", fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
+                homeUiState.currentLocationWeatherForecast?.let {
+                    Text(text = "This Week", fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
 
-                LazyRow(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(4.dp)
-                ) {
-                    items(items = homeUiState.forecastWeather.forecast) {
-                        DayCondition(
-                            modifier = Modifier.size(90.dp),
-                            imageUrl = it.day.condition.icon.toImageFormat(),
-                            dayOfWeek = it.dateEpoch.dayOfWeek.toString().uppercase(),
-                            minTemp = it.day.mintemp.toTempUnitOfMeasurement(unitOfMeasurement = MeasurementOptions.METRIC),
-                            maxTemp = it.day.maxtemp.toTempUnitOfMeasurement(unitOfMeasurement = MeasurementOptions.METRIC)
-                        )
+                    LazyRow(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        items(items = homeUiState.currentLocationWeatherForecast) {
+                            DayCondition(
+                                modifier = Modifier.width(90.dp).wrapContentHeight(),
+                                imageUrl = "it.day.condition.icon.toImageFormat()",
+                                dayOfWeek = it.dt,
+                                minTemp = it.main.tempMin.toTempUnitOfMeasurement(),
+                                maxTemp = it.main.tempMax.toTempUnitOfMeasurement()
+                            )
+                        }
                     }
                 }
                 //endregion
-
-                Divider(modifier = Modifier.padding(horizontal = 4.dp), thickness = 1.dp)
             }
         } else if (homeUiState.error != null) {
             Text(
