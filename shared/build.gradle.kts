@@ -3,15 +3,16 @@ import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 
 plugins {
     alias(libs.plugins.multiplatform)
-    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinX.serialization)
     alias(libs.plugins.buildKonfig)
 
     alias(libs.plugins.compose)
-    alias(libs.plugins.compose.compiler)
 
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
+    alias(libs.plugins.compose.compiler)
+
+    alias(libs.plugins.android.library)
 }
 
 kotlin {
