@@ -2,7 +2,6 @@ package com.vickbt.shared.data.network
 
 import com.vickbt.shared.data.network.models.WeatherDataDto
 import com.vickbt.shared.data.network.services.WeatherApiService
-import com.vickbt.shared.domain.utils.MeasurementOptions
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get

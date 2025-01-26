@@ -8,6 +8,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 
 class HomeViewModel(private val weatherRepository: WeatherRepository) : ViewModel() {
 
@@ -24,10 +27,19 @@ class HomeViewModel(private val weatherRepository: WeatherRepository) : ViewMode
 
     fun fetchCurrentLocationWeather() =
         viewModelScope.launch(coroutineExceptionHandler) {
+            val currentDate = Clock.System.now().toLocalDateTime(TimeZone.UTC).date.toString()
+
             weatherRepository.fetchCurrentLocationWeather().collect { result ->
                 result.onSuccess { weatherData ->
+                    val weatherForecast =
+                        weatherData.list.filterNot { it.dtTxt.contains(currentDate) }
+
                     homeUiStateFlow.update {
-                        it.copy(isLoading = false, currentLocationWeather = weatherData)
+                        it.copy(
+                            isLoading = false,
+                            currentLocationWeather = weatherData,
+                            currentLocationWeatherForecast = weatherForecast
+                        )
                     }
                 }.onFailure {
                     homeUiStateFlow.update { it.copy(isLoading = false, error = it.error) }
@@ -35,7 +47,7 @@ class HomeViewModel(private val weatherRepository: WeatherRepository) : ViewMode
             }
         }
 
-    fun searchLocationWeather(query: String) =
+    /*fun searchLocationWeather(query: String) =
         viewModelScope.launch(coroutineExceptionHandler) {
             weatherRepository.searchLocationWeather(query = query).collect { result ->
                 result.onSuccess { weatherData ->
@@ -46,5 +58,5 @@ class HomeViewModel(private val weatherRepository: WeatherRepository) : ViewMode
                     homeUiStateFlow.update { it.copy(isLoading = false, error = it.error) }
                 }
             }
-        }
+        }*/
 }
