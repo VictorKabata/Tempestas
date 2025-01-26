@@ -77,7 +77,7 @@ fun HomeScreen(paddingValues: PaddingValues, viewModel: HomeViewModel = koinInje
                     Text(
                         modifier = Modifier.testTag("location_text"),
                         text = "${homeUiState.forecastWeather.location.name}," +
-                                " ${homeUiState.forecastWeather.location.country}",
+                            " ${homeUiState.forecastWeather.location.country}",
                         fontWeight = FontWeight.Black,
                         fontSize = 24.sp,
                         maxLines = 1,

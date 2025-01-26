@@ -29,8 +29,8 @@ jobs:
       - name: Execute unit tests
         run: ./gradlew test --stacktrace
 
-#      - name: Upload test report
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: unit_tests_report.html
-#          path: shared/build/reports/kover/html/
+      - name: Upload test report
+        uses: actions/upload-artifact@v3
+        with:
+          name: ktlint report
+          path: shared/build/reports/ktlint/ktlintCommonMainSourceSetCheck/
