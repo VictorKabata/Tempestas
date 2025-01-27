@@ -1,5 +1,6 @@
 package com.vickbt.shared.ui.components
 
+import android.graphics.drawable.Icon
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -8,22 +9,22 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil3.compose.AsyncImage
 
 @Composable
 fun ExtraCondition(
     modifier: Modifier = Modifier,
-    icon: String,
+    icon: ImageVector,
     title: String,
     value: String
 ) {
@@ -38,12 +39,7 @@ fun ExtraCondition(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(2.dp)
         ) {
-            AsyncImage(
-                modifier = Modifier.size(24.dp),
-                model = icon,
-                contentDescription = title,
-                contentScale = ContentScale.Crop
-            )
+            Icon(modifier = Modifier.size(24.dp), imageVector = icon, contentDescription = title)
 
             Text(
                 text = title,

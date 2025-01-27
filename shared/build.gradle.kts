@@ -3,10 +3,16 @@ import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 
 plugins {
     alias(libs.plugins.multiplatform)
-    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinX.serialization)
     alias(libs.plugins.buildKonfig)
+
     alias(libs.plugins.compose)
+
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
+    alias(libs.plugins.compose.compiler)
+
+    alias(libs.plugins.android.library)
 }
 
 kotlin {
@@ -15,6 +21,7 @@ kotlin {
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
+    kotlin.applyDefaultHierarchyTemplate()
     androidTarget()
 
     sourceSets {
@@ -26,7 +33,6 @@ kotlin {
             implementation(compose.materialIconsExtended)
 
             implementation(libs.ktor.core)
-            implementation(libs.ktor.cio)
             implementation(libs.ktor.contentNegotiation)
             implementation(libs.ktor.serialization)
             implementation(libs.ktor.json)
@@ -37,15 +43,15 @@ kotlin {
             api(libs.koin.core)
             implementation(libs.koin.composeViewModel)
 
+            implementation(libs.room.runtime)
+            implementation(libs.sqlite.bundled)
+
             api(libs.napier)
             api(libs.kotlinX.dateTime)
 
             implementation(libs.navigation)
 
             implementation(libs.bundles.coil)
-
-            implementation(libs.multiplatformSettings)
-            implementation(libs.multiplatformSettings.coroutines)
         }
 
         sourceSets["commonTest"].dependencies {
@@ -55,6 +61,7 @@ kotlin {
         }
 
         sourceSets["androidMain"].dependencies {
+            implementation(libs.ktor.android)
             implementation(libs.play.services.location)
             implementation(libs.play.services.maps)
         }
@@ -69,6 +76,20 @@ android {
     compileSdk = 34
     defaultConfig {
         minSdk = 24
+
+        buildTypes {
+            getByName("release") {
+                isMinifyEnabled = false
+                proguardFiles(
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro"
+                )
+            }
+
+            getByName("debug") {
+                isMinifyEnabled = false
+            }
+        }
     }
     namespace = "com.vickbt.shared"
 
@@ -92,4 +113,12 @@ buildkonfig {
             gradleLocalProperties(rootDir).getProperty("api_key") ?: ""
         )
     }
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
+dependencies {
+    add("kspAndroid", libs.room.compiler)
 }
