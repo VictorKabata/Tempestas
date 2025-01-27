@@ -33,7 +33,7 @@ kotlin {
             implementation(compose.materialIconsExtended)
 
             implementation(libs.ktor.core)
-            implementation(libs.ktor.cio)
+//            implementation(libs.ktor.cio)
             implementation(libs.ktor.contentNegotiation)
             implementation(libs.ktor.serialization)
             implementation(libs.ktor.json)
@@ -53,9 +53,6 @@ kotlin {
             implementation(libs.navigation)
 
             implementation(libs.bundles.coil)
-
-            implementation(libs.multiplatformSettings)
-            implementation(libs.multiplatformSettings.coroutines)
         }
 
         sourceSets["commonTest"].dependencies {
@@ -65,6 +62,7 @@ kotlin {
         }
 
         sourceSets["androidMain"].dependencies {
+            implementation(libs.ktor.android)
             implementation(libs.play.services.location)
             implementation(libs.play.services.maps)
         }
