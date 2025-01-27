@@ -64,7 +64,7 @@ fun HomeScreen(
                             Row {
                                 IconButton(
                                     onClick = { navController.navigate(NavigationItem.Search.route) },
-                                    modifier = Modifier.padding(horizontal = 16.dp),
+                                    modifier = Modifier.padding(horizontal = 12.dp),
                                 ) {
                                     Icon(
                                         imageVector = Icons.Rounded.Search,
