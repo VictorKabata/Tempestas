@@ -24,6 +24,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -43,7 +44,7 @@ fun HomeScreen(
     navController: NavController,
     viewModel: HomeViewModel = koinInject()
 ) {
-    val homeUiState = viewModel.homeUiState.collectAsState().value
+    val homeUiState by viewModel.homeUiState.collectAsState()
     val scrollState = rememberScrollState()
 
     Box(
@@ -97,7 +98,7 @@ fun HomeScreen(
                     .testTag("error_text")
                     .align(Alignment.Center)
                     .padding(horizontal = 24.dp),
-                text = homeUiState.error,
+                text = homeUiState.error ?: "Error",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Medium,
                 textAlign = TextAlign.Center
