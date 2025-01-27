@@ -5,13 +5,14 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.vickbt.shared.data.cache.entities.WeatherDataEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface WeatherDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertWeatherData(weatherItems: List<WeatherDataEntity>)
+    suspend fun saveWeatherData(weatherData: WeatherDataEntity)
 
     @Query("SELECT * FROM weather_data_table")
-    suspend fun getWeatherData(): List<WeatherDataEntity>
+    fun getWeatherData(): Flow<WeatherDataEntity?>?
 }

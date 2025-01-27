@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "1870a04a02c1872e8f213499c0a99991",
+    "identityHash": "e754d07bf8f297a78b88718f6b3c4a6d",
     "entities": [
       {
         "tableName": "city_table",
@@ -180,7 +180,7 @@
       },
       {
         "tableName": "weather_data_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `code` TEXT NOT NULL, `message` INTEGER NOT NULL, `cnt` INTEGER NOT NULL, `list` TEXT NOT NULL, `city_id` INTEGER NOT NULL, `name` TEXT NOT NULL, `country` TEXT NOT NULL, `population` INTEGER NOT NULL, `timezone` INTEGER NOT NULL, `sunrise` INTEGER NOT NULL, `sunset` INTEGER NOT NULL, `coordinates_id` INTEGER NOT NULL, `lat` REAL NOT NULL, `lon` REAL NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `code` TEXT NOT NULL, `message` INTEGER NOT NULL, `cnt` INTEGER NOT NULL, `list` TEXT NOT NULL, `cachedLastAt` INTEGER, `city_id` INTEGER NOT NULL, `name` TEXT NOT NULL, `country` TEXT NOT NULL, `population` INTEGER NOT NULL, `timezone` INTEGER NOT NULL, `sunrise` INTEGER NOT NULL, `sunset` INTEGER NOT NULL, `coordinates_id` INTEGER NOT NULL, `lat` REAL NOT NULL, `lon` REAL NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -211,6 +211,11 @@
             "columnName": "list",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "cachedLastAt",
+            "columnName": "cachedLastAt",
+            "affinity": "INTEGER"
           },
           {
             "fieldPath": "city.cityId",
@@ -481,7 +486,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1870a04a02c1872e8f213499c0a99991')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e754d07bf8f297a78b88718f6b3c4a6d')"
     ]
   }
 }

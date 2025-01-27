@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.vickbt.shared.data.cache.convertors.WeatherItemTypeConverters
+import kotlinx.datetime.Clock
 
 @Entity(tableName = "weather_data_table")
 data class WeatherDataEntity(
@@ -15,5 +16,6 @@ data class WeatherDataEntity(
     val cnt: Int,
     @TypeConverters(WeatherItemTypeConverters::class)
     val list: List<WeatherItemEntity>,
-    @Embedded val city: CityEntity
+    @Embedded val city: CityEntity,
+    val cachedLastAt: Long? = Clock.System.now().toEpochMilliseconds()
 )

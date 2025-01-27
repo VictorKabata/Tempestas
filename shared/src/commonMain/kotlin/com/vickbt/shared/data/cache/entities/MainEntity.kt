@@ -2,8 +2,10 @@ package com.vickbt.shared.data.cache.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.serialization.Serializable
 
 @Entity(tableName = "main_weather_table")
+@Serializable
 data class MainEntity(
     @PrimaryKey(autoGenerate = false)
     val id: Int = 1,

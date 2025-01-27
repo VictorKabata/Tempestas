@@ -82,7 +82,11 @@ val sharedModule: Module = module {
     single<WeatherApiService> { WeatherApiServiceImpl(weatherApiClient = get()) }
 
     single<WeatherRepository> {
-        WeatherDataSource(weatherApiService = get(), locationService = get<LocationService>())
+        WeatherDataSource(
+            weatherApiService = get(),
+            appDatabase = get(),
+            locationService = get()
+        )
     }
 
     viewModelOf(::HomeViewModel)

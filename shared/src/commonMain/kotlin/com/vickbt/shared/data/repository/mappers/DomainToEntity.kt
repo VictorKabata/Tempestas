@@ -15,31 +15,31 @@ import com.vickbt.shared.domain.models.WeatherData
 import com.vickbt.shared.domain.models.WeatherItem
 import com.vickbt.shared.domain.models.Wind
 
-fun WeatherDataEntity.toDomain(): WeatherData {
-    return WeatherData(
+fun WeatherData.toEntity(): WeatherDataEntity {
+    return WeatherDataEntity(
         code = this.code,
         message = this.message,
         cnt = this.cnt,
-        list = this.list.map { it.toDomain() },
-        city = this.city.toDomain(),
+        list = this.list.map { it.toEntity() },
+        city = this.city.toEntity(),
         cachedLastAt = this.cachedLastAt
     )
 }
 
-fun WeatherItemEntity.toDomain(): WeatherItem {
-    return WeatherItem(
+fun WeatherItem.toEntity(): WeatherItemEntity {
+    return WeatherItemEntity(
         dt = this.dt,
-        main = this.main.toDomain(),
-        weather = this.weather.map { it.toDomain() },
-        wind = this.wind.toDomain(),
+        main = this.main.toEntity(),
+        weather = this.weather.map { it.toEntity() },
+        wind = this.wind.toEntity(),
         visibility = this.visibility,
         pop = this.pop,
         dtTxt = this.dtTxt
     )
 }
 
-fun MainEntity.toDomain(): Main {
-    return Main(
+fun Main.toEntity(): MainEntity {
+    return MainEntity(
         temp = this.temp,
         feelsLike = this.feelsLike,
         tempMin = this.tempMin,
@@ -52,8 +52,8 @@ fun MainEntity.toDomain(): Main {
     )
 }
 
-fun WeatherEntity.toDomain(): Weather {
-    return Weather(
+fun Weather.toEntity(): WeatherEntity {
+    return WeatherEntity(
         id = this.id,
         main = this.main,
         description = this.description,
@@ -61,19 +61,19 @@ fun WeatherEntity.toDomain(): Weather {
     )
 }
 
-fun WindEntity.toDomain(): Wind {
-    return Wind(
+fun Wind.toEntity(): WindEntity {
+    return WindEntity(
         speed = this.speed,
         deg = this.deg,
         gust = this.gust
     )
 }
 
-fun CityEntity.toDomain(): City {
-    return City(
-        id = this.cityId,
+fun City.toEntity(): CityEntity {
+    return CityEntity(
+        cityId = this.id,
         name = this.name,
-        coordinates = this.coordinates.toDomain(),
+        coordinates = this.coordinates.toEntity(),
         country = this.country,
         population = this.population,
         timezone = this.timezone,
@@ -82,6 +82,6 @@ fun CityEntity.toDomain(): City {
     )
 }
 
-fun CoordinatesEntity.toDomain(): Coordinates {
-    return Coordinates(lat = this.lat, lon = this.lon)
+fun Coordinates.toEntity(): CoordinatesEntity {
+    return CoordinatesEntity(lat = this.lat, lon = this.lon)
 }
