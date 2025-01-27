@@ -177,13 +177,13 @@ fun ItemWeatherData(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(4.dp)
             ) {
-                items(items = weatherData.locationWeatherForecast) {
+                items(items = weatherData.locationWeatherForecast) { item ->
                     DayCondition(
                         modifier = Modifier.width(90.dp).wrapContentHeight(),
-                        imageUrl = it.weather.first().icon.toImageFormat(),
-                        dayOfWeek = it.dt,
-                        minTemp = it.main.tempMin.toTempUnitOfMeasurement(),
-                        maxTemp = it.main.tempMax.toTempUnitOfMeasurement()
+                        imageUrl = item.weather.first().icon.toImageFormat(),
+                        dayOfWeek = item.dt,
+                        minTemp = item.main.tempMin.toTempUnitOfMeasurement(),
+                        maxTemp = item.main.tempMax.toTempUnitOfMeasurement()
                     )
                 }
             }
