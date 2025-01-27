@@ -50,7 +50,7 @@ fun Double.toSpeedUnitOfMeasurement(unitOfMeasurement: MeasurementOptions = Meas
 
 /**Appends [https:] to condition icon image url*/
 fun String.toImageFormat(): String {
-    return "https:$this"
+    return "https://openweathermap.org/img/wn/$this@2x.png"
 }
 
 fun PlatformContext.getAsyncImageLoader() = ImageLoader.Builder(this)

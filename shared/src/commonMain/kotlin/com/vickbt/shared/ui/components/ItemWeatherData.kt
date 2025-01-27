@@ -26,6 +26,7 @@ import com.vickbt.shared.domain.models.WeatherData
 import com.vickbt.shared.domain.models.WeatherItem
 import com.vickbt.shared.domain.utils.MeasurementOptions
 import com.vickbt.shared.domain.utils.capitalizeEachWord
+import com.vickbt.shared.domain.utils.toImageFormat
 import com.vickbt.shared.domain.utils.toReadableDateFormat
 import com.vickbt.shared.domain.utils.toReadableDateTimeFormat
 import com.vickbt.shared.domain.utils.toSpeedUnitOfMeasurement
@@ -105,7 +106,7 @@ fun ItemWeatherData(
             ) {
                 AsyncImage(
                     modifier = Modifier.size(150.dp),
-                    model = "homeUiState.forecastWeather.current.condition.icon.toImageFormat()",
+                    model = weatherData.locationCurrentWeather.list.first().weather.first().icon.toImageFormat(),
                     contentDescription = "homeUiState.forecastWeather.current.condition.text",
                     contentScale = ContentScale.Crop
                 )
@@ -176,7 +177,7 @@ fun ItemWeatherData(
                 items(items = weatherData.locationWeatherForecast) {
                     DayCondition(
                         modifier = Modifier.width(90.dp).wrapContentHeight(),
-                        imageUrl = "it.day.condition.icon.toImageFormat()",
+                        imageUrl = it.weather.first().icon.toImageFormat(),
                         dayOfWeek = it.dt,
                         minTemp = it.main.tempMin.toTempUnitOfMeasurement(),
                         maxTemp = it.main.tempMax.toTempUnitOfMeasurement()
