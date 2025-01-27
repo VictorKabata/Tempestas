@@ -9,7 +9,6 @@ import com.vickbt.shared.data.repository.datasource.WeatherDataSource
 import com.vickbt.shared.domain.repository.WeatherRepository
 import com.vickbt.shared.domain.utils.Constants.BASE_URL
 import com.vickbt.shared.domain.utils.Constants.URL_PATH
-import com.vickbt.shared.domain.utils.LocationService
 import com.vickbt.shared.ui.screens.home.HomeViewModel
 import com.vickbt.shared.ui.screens.search.SearchViewModel
 import io.github.aakira.napier.DebugAntilog
