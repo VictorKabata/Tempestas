@@ -44,7 +44,7 @@ androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 mockative = "2.0.1"
 androidXJUnit = "1.1.5"
-robolectric = "4.11.1"
+robolectric = "4.12"
 firebase-analytics = "21.5.0"
 
 [plugins]
