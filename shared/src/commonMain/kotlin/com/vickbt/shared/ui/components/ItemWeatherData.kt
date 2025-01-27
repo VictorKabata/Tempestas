@@ -1,11 +1,15 @@
 package com.vickbt.shared.ui.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,6 +30,7 @@ import com.vickbt.shared.domain.utils.capitalizeEachWord
 import com.vickbt.shared.domain.utils.toImageFormat
 import com.vickbt.shared.domain.utils.toReadableDateFormat
 import com.vickbt.shared.domain.utils.toReadableDateTimeFormat
+import com.vickbt.shared.domain.utils.toSpeedUnitOfMeasurement
 import com.vickbt.shared.domain.utils.toTempUnitOfMeasurement
 import com.vickbt.shared.ui.states.WeatherUiState
 import kotlinx.datetime.Clock
@@ -128,7 +133,7 @@ fun ItemWeatherData(
             HorizontalDivider(modifier = Modifier.padding(horizontal = 4.dp), thickness = 1.dp)
 
             //region Extra Conditions
-            /*LazyRow(
+            LazyRow(
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight(),
@@ -156,15 +161,17 @@ fun ItemWeatherData(
                             .toSpeedUnitOfMeasurement()
                     )
                 }
-            }*/
+            }
             //endregion
 
             HorizontalDivider(modifier = Modifier.padding(horizontal = 4.dp), thickness = 1.dp)
         }
 
         //region Weekly Forecast
-        /*weatherData.locationWeatherForecast?.let {
+        weatherData.locationWeatherForecast?.let {
             Text(text = "This Week", fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
+
+            Log.e("VicKbt", "Forecast: $it")
 
             LazyRow(
                 modifier = Modifier.fillMaxWidth(),
@@ -180,7 +187,7 @@ fun ItemWeatherData(
                     )
                 }
             }
-        }*/
+        }
         //endregion
     }
 }
