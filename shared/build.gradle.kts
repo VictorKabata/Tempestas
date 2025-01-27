@@ -33,7 +33,6 @@ kotlin {
             implementation(compose.materialIconsExtended)
 
             implementation(libs.ktor.core)
-//            implementation(libs.ktor.cio)
             implementation(libs.ktor.contentNegotiation)
             implementation(libs.ktor.serialization)
             implementation(libs.ktor.json)
@@ -69,7 +68,6 @@ kotlin {
 
         sourceSets["androidUnitTest"].dependencies {
             implementation(libs.mockk)
-            implementation(libs.roboelectric)
         }
     }
 }

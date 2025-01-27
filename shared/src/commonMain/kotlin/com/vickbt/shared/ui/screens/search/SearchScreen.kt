@@ -41,7 +41,7 @@ fun SearchScreen(
 ) {
     var searchQuery by remember { mutableStateOf<String?>(null) }
 
-    val searchUiState = viewModel.searchUiState.collectAsState().value
+    val searchUiState by viewModel.searchUiState.collectAsState()
     val scrollState = rememberScrollState()
 
     Log.e("VicKbt", "search ui state current city: ${searchUiState.locationCurrentWeather?.city}")
@@ -82,7 +82,7 @@ fun SearchScreen(
                             .align(Alignment.Center)
                             .wrapContentSize()
                             .padding(horizontal = 24.dp),
-                        text = searchUiState.error,
+                        text = searchUiState.error ?: "Error",
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Medium,
                         textAlign = TextAlign.Center

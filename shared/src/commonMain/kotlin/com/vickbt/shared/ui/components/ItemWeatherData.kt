@@ -10,6 +10,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Air
+import androidx.compose.material.icons.rounded.Thermostat
+import androidx.compose.material.icons.rounded.WaterDrop
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -141,21 +145,21 @@ fun ItemWeatherData(
             ) {
                 item {
                     ExtraCondition(
-                        icon = "R.drawable.humidity_percentage",
+                        icon = Icons.Rounded.WaterDrop,
                         title = "Humidity",
                         value = "${weatherData.locationCurrentWeather.list.first().main.humidity}%"
                     )
                 }
                 item {
                     ExtraCondition(
-                        icon = "R.drawable.thermometer",
+                        icon = Icons.Rounded.Thermostat,
                         title = "Feels Like",
                         value = weatherData.locationCurrentWeather.list.first().main.feelsLike.toTempUnitOfMeasurement()
                     )
                 }
                 item {
                     ExtraCondition(
-                        icon = "R.drawable.wind",
+                        icon = Icons.Rounded.Air,
                         title = "Wind",
                         value = weatherData.locationCurrentWeather.list.first().wind.speed
                             .toSpeedUnitOfMeasurement()

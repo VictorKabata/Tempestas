@@ -7,8 +7,11 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Search
@@ -21,8 +24,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -39,7 +44,7 @@ fun HomeScreen(
     navController: NavController,
     viewModel: HomeViewModel = koinInject()
 ) {
-    val homeUiState = viewModel.homeUiState.collectAsState().value
+    val homeUiState by viewModel.homeUiState.collectAsState()
     val scrollState = rememberScrollState()
 
     Box(
@@ -58,17 +63,20 @@ fun HomeScreen(
                 modifier = Modifier.padding(paddingValues),
                 topBar = {
                     TopAppBar(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth().height(52.dp),
                         title = { },
                         actions = {
-                            Row {
+                            Row(
+                                modifier = Modifier,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
                                 IconButton(
+                                    modifier = Modifier.size(48.dp).clip(CircleShape),
                                     onClick = { navController.navigate(NavigationItem.Search.route) },
-                                    modifier = Modifier.padding(horizontal = 12.dp),
                                 ) {
                                     Icon(
                                         imageVector = Icons.Rounded.Search,
-                                        contentDescription = "Menu",
+                                        contentDescription = "Search",
                                     )
                                 }
                             }
@@ -90,7 +98,7 @@ fun HomeScreen(
                     .testTag("error_text")
                     .align(Alignment.Center)
                     .padding(horizontal = 24.dp),
-                text = homeUiState.error,
+                text = homeUiState.error ?: "Error",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Medium,
                 textAlign = TextAlign.Center
