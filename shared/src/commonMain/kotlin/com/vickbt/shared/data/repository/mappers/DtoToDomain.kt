@@ -103,7 +103,7 @@ fun CoordinatesDto.toDomain(): Coordinates {
 
 fun WeatherDataDto.toDomain(): WeatherData {
     return WeatherData(
-        cod = this.cod,
+        code = this.code,
         message = this.message,
         cnt = this.cnt,
         list = this.weatherList.map { it.toDomain() },
