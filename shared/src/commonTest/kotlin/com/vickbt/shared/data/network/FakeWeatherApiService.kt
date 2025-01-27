@@ -23,5 +23,4 @@ class FakeWeatherApiService : WeatherApiService {
     ): WeatherDataDto {
         return testWeatherDataDto
     }
-
 }

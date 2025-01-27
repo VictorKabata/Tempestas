@@ -66,7 +66,3 @@ val testWeatherDataEntity = WeatherDataEntity(
     list = listOf(testWeatherItemEntity),
     city = testCityEntity
 )
-
-
-
-

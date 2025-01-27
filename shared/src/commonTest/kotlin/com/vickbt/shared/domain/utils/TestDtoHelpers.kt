@@ -84,7 +84,3 @@ val testWeatherDataDto = WeatherDataDto(
     weatherList = listOf(testWeatherItemDto),
     city = testCityDto
 )
-
-
-
-

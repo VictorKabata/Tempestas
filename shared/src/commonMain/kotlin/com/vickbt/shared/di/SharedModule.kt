@@ -35,7 +35,7 @@ val sharedModule: Module = module {
 
     /**Create a singleton instance of ktor client*/
     single {
-        HttpClient() {
+        HttpClient {
             expectSuccess = true
             addDefaultResponseValidation()
 

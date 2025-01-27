@@ -77,14 +77,10 @@ val testWeatherItem = WeatherItem(
     dtTxt = "2025-01-27 12:00:00"
 )
 
-val testWeatherData=WeatherData(
+val testWeatherData = WeatherData(
     code = "200",
     message = 0,
     cnt = 0,
     list = listOf(testWeatherItem),
     city = testCity
 )
-
-
-
-
