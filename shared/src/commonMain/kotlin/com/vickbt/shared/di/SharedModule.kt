@@ -92,5 +92,5 @@ val sharedModule: Module = module {
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
     startKoin {
         appDeclaration()
-        modules(sharedModule)
+        modules(androidModule, sharedModule)
     }
