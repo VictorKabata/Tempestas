@@ -46,7 +46,7 @@ fun MainDto.toDomain(): Main {
         tempMax = this.tempMax,
         pressure = this.pressure,
         seaLevel = this.seaLevel,
-        groundLevel = this.grndLevel,
+        groundLevel = this.groundLevel,
         humidity = this.humidity,
         tempKf = this.tempKf
     )
