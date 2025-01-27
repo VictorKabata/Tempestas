@@ -1,3 +1,4 @@
+// ktlint-disable filename
 package com.vickbt.shared.data.cache.convertors
 
 import androidx.room.TypeConverter

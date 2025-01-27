@@ -14,10 +14,6 @@ import com.vickbt.shared.data.network.models.WeatherDataDto
 import com.vickbt.shared.data.network.models.WeatherDto
 import com.vickbt.shared.data.network.models.WeatherItemDto
 import com.vickbt.shared.data.network.models.WindDto
-import com.vickbt.shared.domain.models.City
-import com.vickbt.shared.domain.models.Coordinates
-import com.vickbt.shared.domain.models.Weather
-import com.vickbt.shared.domain.models.Wind
 
 fun WeatherDataDto.toEntity(): WeatherDataEntity {
     return WeatherDataEntity(

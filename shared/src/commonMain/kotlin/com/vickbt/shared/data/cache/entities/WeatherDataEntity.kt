@@ -7,7 +7,6 @@ import androidx.room.TypeConverters
 import com.vickbt.shared.data.cache.convertors.WeatherItemTypeConverters
 
 @Entity(tableName = "weather_data_table")
-
 data class WeatherDataEntity(
     @PrimaryKey(autoGenerate = false)
     val id: Int = 1,

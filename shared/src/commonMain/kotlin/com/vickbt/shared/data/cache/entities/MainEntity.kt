@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "main_weather_table")
 data class MainEntity(
     @PrimaryKey(autoGenerate = false)
-    val id:Int=1,
+    val id: Int = 1,
     val temp: Double,
     val feelsLike: Double,
     val tempMin: Double,
