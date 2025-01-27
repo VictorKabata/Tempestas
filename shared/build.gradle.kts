@@ -30,10 +30,10 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.ui)
+            implementation(compose.components.resources)
             implementation(compose.materialIconsExtended)
 
             implementation(libs.ktor.core)
-//            implementation(libs.ktor.cio)
             implementation(libs.ktor.contentNegotiation)
             implementation(libs.ktor.serialization)
             implementation(libs.ktor.json)
@@ -69,7 +69,6 @@ kotlin {
 
         sourceSets["androidUnitTest"].dependencies {
             implementation(libs.mockk)
-            implementation(libs.roboelectric)
         }
     }
 }
@@ -123,4 +122,10 @@ room {
 
 dependencies {
     add("kspAndroid", libs.room.compiler)
+}
+
+compose.resources {
+    publicResClass = true
+    packageOfResClass = "com.vickbt.shared.resources"
+    generateResClass = always
 }
