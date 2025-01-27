@@ -5,7 +5,7 @@ import com.google.android.gms.location.LocationServices
 import com.vickbt.shared.domain.utils.LocationService
 import org.koin.dsl.module
 
-val androidModule = module {
+actual val platformModule = module {
 
     /**Creates a fused location client used to create an instance of [LocationServices]*/
     single {

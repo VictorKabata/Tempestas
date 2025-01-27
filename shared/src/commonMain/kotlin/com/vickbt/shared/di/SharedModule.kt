@@ -89,8 +89,10 @@ val sharedModule: Module = module {
     viewModelOf(::SearchViewModel)
 }
 
+expect val platformModule: Module
+
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
     startKoin {
         appDeclaration()
-        modules(androidModule, sharedModule)
+        modules(platformModule, sharedModule)
     }
