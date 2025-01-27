@@ -77,6 +77,20 @@ android {
     compileSdk = 34
     defaultConfig {
         minSdk = 24
+
+        buildTypes {
+            getByName("release") {
+                isMinifyEnabled = false
+                proguardFiles(
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro"
+                )
+            }
+
+            getByName("debug") {
+                isMinifyEnabled = false
+            }
+        }
     }
     namespace = "com.vickbt.shared"
 
