@@ -46,7 +46,7 @@ fun MainDto.toDomain(): Main {
         tempMax = this.tempMax,
         pressure = this.pressure,
         seaLevel = this.seaLevel,
-        grndLevel = this.grndLevel,
+        groundLevel = this.groundLevel,
         humidity = this.humidity,
         tempKf = this.tempKf
     )
@@ -103,7 +103,7 @@ fun CoordinatesDto.toDomain(): Coordinates {
 
 fun WeatherDataDto.toDomain(): WeatherData {
     return WeatherData(
-        cod = this.cod,
+        code = this.code,
         message = this.message,
         cnt = this.cnt,
         list = this.weatherList.map { it.toDomain() },

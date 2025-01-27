@@ -36,9 +36,9 @@ class HomeViewModel(private val weatherRepository: WeatherRepository) : ViewMode
             weatherRepository.fetchCurrentLocationWeather().collect { result ->
                 result.onSuccess { weatherData ->
                     val weatherForecast =
-                        weatherData.list.filterNot { it.dtTxt.contains(currentDate) }
-                            .groupBy { it.dtTxt.substringBefore(" ") }
-                            .map { it.value.first() }
+                        weatherData?.list?.filterNot { it.dtTxt.contains(currentDate) }
+                            ?.groupBy { it.dtTxt.substringBefore(" ") }
+                            ?.map { it.value.first() }
 
                     _homeUiState.update {
                         it.copy(

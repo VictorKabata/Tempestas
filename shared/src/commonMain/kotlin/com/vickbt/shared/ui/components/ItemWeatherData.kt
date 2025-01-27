@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -26,11 +26,13 @@ import com.vickbt.shared.domain.models.WeatherData
 import com.vickbt.shared.domain.models.WeatherItem
 import com.vickbt.shared.domain.utils.MeasurementOptions
 import com.vickbt.shared.domain.utils.capitalizeEachWord
-import com.vickbt.shared.domain.utils.toReadableFormat
+import com.vickbt.shared.domain.utils.toReadableDateFormat
+import com.vickbt.shared.domain.utils.toReadableDateTimeFormat
 import com.vickbt.shared.domain.utils.toSpeedUnitOfMeasurement
 import com.vickbt.shared.domain.utils.toTempUnitOfMeasurement
 import com.vickbt.shared.ui.states.WeatherUiState
 import kotlinx.datetime.Clock
+import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
@@ -70,12 +72,27 @@ fun ItemWeatherData(
                     modifier = Modifier.testTag("date_text"),
                     text = Clock.System.now()
                         .toLocalDateTime(TimeZone.currentSystemDefault())
-                        .toReadableFormat(),
+                        .toReadableDateFormat(),
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 20.sp,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
+
+                weatherData.locationCurrentWeather.cachedLastAt?.let { cachedTime ->
+                    Text(
+                        modifier = Modifier.testTag("last_updated_text"),
+                        text = "Last Updated: ${
+                            Instant.fromEpochMilliseconds(cachedTime)
+                                .toLocalDateTime(TimeZone.currentSystemDefault())
+                                .toReadableDateTimeFormat()
+                        }",
+                        fontWeight = FontWeight.Medium,
+                        fontSize = 12.sp,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
             }
             //endregion
 
@@ -111,7 +128,7 @@ fun ItemWeatherData(
             }
             //endregion
 
-            Divider(modifier = Modifier.padding(horizontal = 4.dp), thickness = 1.dp)
+            HorizontalDivider(modifier = Modifier.padding(horizontal = 4.dp), thickness = 1.dp)
 
             //region Extra Conditions
             LazyRow(
@@ -145,7 +162,7 @@ fun ItemWeatherData(
             }
             //endregion
 
-            Divider(modifier = Modifier.padding(horizontal = 4.dp), thickness = 1.dp)
+            HorizontalDivider(modifier = Modifier.padding(horizontal = 4.dp), thickness = 1.dp)
         }
 
         //region Weekly Forecast

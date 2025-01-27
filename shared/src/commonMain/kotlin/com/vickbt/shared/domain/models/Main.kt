@@ -7,7 +7,7 @@ data class Main(
     val tempMax: Double,
     val pressure: Int,
     val seaLevel: Int,
-    val grndLevel: Int,
+    val groundLevel: Int,
     val humidity: Int,
     val tempKf: Double
 )
