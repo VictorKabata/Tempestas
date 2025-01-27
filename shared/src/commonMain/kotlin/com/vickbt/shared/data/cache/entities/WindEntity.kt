@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class WindEntity(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "wind_id") val id: Int = 1,
-    val speed: Double? = null,
-    val deg: Int? = null,
-    val gust: Double? = null
+    val speed: Double,
+    val deg: Int,
+    val gust: Double
 )

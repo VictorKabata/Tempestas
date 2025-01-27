@@ -2,61 +2,71 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "443cfbdd53f4c37105582f3f9aded70c",
+    "identityHash": "1870a04a02c1872e8f213499c0a99991",
     "entities": [
       {
         "tableName": "city_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`city_id` INTEGER, `name` TEXT, `country` TEXT, `population` INTEGER, `timezone` INTEGER, `sunrise` INTEGER, `sunset` INTEGER, `coordinates_id` INTEGER, `lat` REAL, `lon` REAL, PRIMARY KEY(`city_id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`city_id` INTEGER NOT NULL, `name` TEXT NOT NULL, `country` TEXT NOT NULL, `population` INTEGER NOT NULL, `timezone` INTEGER NOT NULL, `sunrise` INTEGER NOT NULL, `sunset` INTEGER NOT NULL, `coordinates_id` INTEGER NOT NULL, `lat` REAL NOT NULL, `lon` REAL NOT NULL, PRIMARY KEY(`city_id`))",
         "fields": [
           {
             "fieldPath": "cityId",
             "columnName": "city_id",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "name",
             "columnName": "name",
-            "affinity": "TEXT"
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
             "fieldPath": "country",
             "columnName": "country",
-            "affinity": "TEXT"
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
             "fieldPath": "population",
             "columnName": "population",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "timezone",
             "columnName": "timezone",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "sunrise",
             "columnName": "sunrise",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "sunset",
             "columnName": "sunset",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "coordinates.id",
             "columnName": "coordinates_id",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "coordinates.lat",
             "columnName": "lat",
-            "affinity": "REAL"
+            "affinity": "REAL",
+            "notNull": true
           },
           {
             "fieldPath": "coordinates.lon",
             "columnName": "lon",
-            "affinity": "REAL"
+            "affinity": "REAL",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -68,7 +78,7 @@
       },
       {
         "tableName": "coordinates_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`coordinates_id` INTEGER NOT NULL, `lat` REAL, `lon` REAL, PRIMARY KEY(`coordinates_id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`coordinates_id` INTEGER NOT NULL, `lat` REAL NOT NULL, `lon` REAL NOT NULL, PRIMARY KEY(`coordinates_id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -79,12 +89,14 @@
           {
             "fieldPath": "lat",
             "columnName": "lat",
-            "affinity": "REAL"
+            "affinity": "REAL",
+            "notNull": true
           },
           {
             "fieldPath": "lon",
             "columnName": "lon",
-            "affinity": "REAL"
+            "affinity": "REAL",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -96,7 +108,7 @@
       },
       {
         "tableName": "main_weather_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `temp` REAL, `feelsLike` REAL, `tempMin` REAL, `tempMax` REAL, `pressure` INTEGER, `seaLevel` INTEGER, `groundLevel` INTEGER, `humidity` INTEGER, `tempKf` REAL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `temp` REAL NOT NULL, `feelsLike` REAL NOT NULL, `tempMin` REAL NOT NULL, `tempMax` REAL NOT NULL, `pressure` INTEGER NOT NULL, `seaLevel` INTEGER NOT NULL, `groundLevel` INTEGER NOT NULL, `humidity` INTEGER NOT NULL, `tempKf` REAL NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -107,47 +119,56 @@
           {
             "fieldPath": "temp",
             "columnName": "temp",
-            "affinity": "REAL"
+            "affinity": "REAL",
+            "notNull": true
           },
           {
             "fieldPath": "feelsLike",
             "columnName": "feelsLike",
-            "affinity": "REAL"
+            "affinity": "REAL",
+            "notNull": true
           },
           {
             "fieldPath": "tempMin",
             "columnName": "tempMin",
-            "affinity": "REAL"
+            "affinity": "REAL",
+            "notNull": true
           },
           {
             "fieldPath": "tempMax",
             "columnName": "tempMax",
-            "affinity": "REAL"
+            "affinity": "REAL",
+            "notNull": true
           },
           {
             "fieldPath": "pressure",
             "columnName": "pressure",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "seaLevel",
             "columnName": "seaLevel",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "groundLevel",
             "columnName": "groundLevel",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "humidity",
             "columnName": "humidity",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "tempKf",
             "columnName": "tempKf",
-            "affinity": "REAL"
+            "affinity": "REAL",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -159,7 +180,7 @@
       },
       {
         "tableName": "weather_data_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `code` TEXT, `message` INTEGER, `cnt` INTEGER, `city_id` INTEGER, `name` TEXT, `country` TEXT, `population` INTEGER, `timezone` INTEGER, `sunrise` INTEGER, `sunset` INTEGER, `coordinates_id` INTEGER, `lat` REAL, `lon` REAL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `code` TEXT NOT NULL, `message` INTEGER NOT NULL, `cnt` INTEGER NOT NULL, `list` TEXT NOT NULL, `city_id` INTEGER NOT NULL, `name` TEXT NOT NULL, `country` TEXT NOT NULL, `population` INTEGER NOT NULL, `timezone` INTEGER NOT NULL, `sunrise` INTEGER NOT NULL, `sunset` INTEGER NOT NULL, `coordinates_id` INTEGER NOT NULL, `lat` REAL NOT NULL, `lon` REAL NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -170,67 +191,86 @@
           {
             "fieldPath": "code",
             "columnName": "code",
-            "affinity": "TEXT"
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
             "fieldPath": "message",
             "columnName": "message",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "cnt",
             "columnName": "cnt",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "list",
+            "columnName": "list",
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
             "fieldPath": "city.cityId",
             "columnName": "city_id",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "city.name",
             "columnName": "name",
-            "affinity": "TEXT"
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
             "fieldPath": "city.country",
             "columnName": "country",
-            "affinity": "TEXT"
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
             "fieldPath": "city.population",
             "columnName": "population",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "city.timezone",
             "columnName": "timezone",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "city.sunrise",
             "columnName": "sunrise",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "city.sunset",
             "columnName": "sunset",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "city.coordinates.id",
             "columnName": "coordinates_id",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "city.coordinates.lat",
             "columnName": "lat",
-            "affinity": "REAL"
+            "affinity": "REAL",
+            "notNull": true
           },
           {
             "fieldPath": "city.coordinates.lon",
             "columnName": "lon",
-            "affinity": "REAL"
+            "affinity": "REAL",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -242,27 +282,31 @@
       },
       {
         "tableName": "weather_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`weather_id` INTEGER, `main` TEXT, `description` TEXT, `icon` TEXT, PRIMARY KEY(`weather_id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`weather_id` INTEGER NOT NULL, `main` TEXT NOT NULL, `description` TEXT NOT NULL, `icon` TEXT NOT NULL, PRIMARY KEY(`weather_id`))",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "weather_id",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "main",
             "columnName": "main",
-            "affinity": "TEXT"
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
             "fieldPath": "description",
             "columnName": "description",
-            "affinity": "TEXT"
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
             "fieldPath": "icon",
             "columnName": "icon",
-            "affinity": "TEXT"
+            "affinity": "TEXT",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -274,97 +318,121 @@
       },
       {
         "tableName": "weather_item_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`dt` INTEGER, `visibility` INTEGER, `pop` REAL, `dtTxt` TEXT, `id` INTEGER, `temp` REAL, `feelsLike` REAL, `tempMin` REAL, `tempMax` REAL, `pressure` INTEGER, `seaLevel` INTEGER, `groundLevel` INTEGER, `humidity` INTEGER, `tempKf` REAL, `wind_id` INTEGER, `speed` REAL, `deg` INTEGER, `gust` REAL, PRIMARY KEY(`dt`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`dt` INTEGER NOT NULL, `weather` TEXT NOT NULL, `visibility` INTEGER NOT NULL, `pop` REAL NOT NULL, `dtTxt` TEXT NOT NULL, `id` INTEGER NOT NULL, `temp` REAL NOT NULL, `feelsLike` REAL NOT NULL, `tempMin` REAL NOT NULL, `tempMax` REAL NOT NULL, `pressure` INTEGER NOT NULL, `seaLevel` INTEGER NOT NULL, `groundLevel` INTEGER NOT NULL, `humidity` INTEGER NOT NULL, `tempKf` REAL NOT NULL, `wind_id` INTEGER NOT NULL, `speed` REAL NOT NULL, `deg` INTEGER NOT NULL, `gust` REAL NOT NULL, PRIMARY KEY(`dt`))",
         "fields": [
           {
             "fieldPath": "dt",
             "columnName": "dt",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weather",
+            "columnName": "weather",
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
             "fieldPath": "visibility",
             "columnName": "visibility",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "pop",
             "columnName": "pop",
-            "affinity": "REAL"
+            "affinity": "REAL",
+            "notNull": true
           },
           {
             "fieldPath": "dtTxt",
             "columnName": "dtTxt",
-            "affinity": "TEXT"
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
             "fieldPath": "main.id",
             "columnName": "id",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "main.temp",
             "columnName": "temp",
-            "affinity": "REAL"
+            "affinity": "REAL",
+            "notNull": true
           },
           {
             "fieldPath": "main.feelsLike",
             "columnName": "feelsLike",
-            "affinity": "REAL"
+            "affinity": "REAL",
+            "notNull": true
           },
           {
             "fieldPath": "main.tempMin",
             "columnName": "tempMin",
-            "affinity": "REAL"
+            "affinity": "REAL",
+            "notNull": true
           },
           {
             "fieldPath": "main.tempMax",
             "columnName": "tempMax",
-            "affinity": "REAL"
+            "affinity": "REAL",
+            "notNull": true
           },
           {
             "fieldPath": "main.pressure",
             "columnName": "pressure",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "main.seaLevel",
             "columnName": "seaLevel",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "main.groundLevel",
             "columnName": "groundLevel",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "main.humidity",
             "columnName": "humidity",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "main.tempKf",
             "columnName": "tempKf",
-            "affinity": "REAL"
+            "affinity": "REAL",
+            "notNull": true
           },
           {
             "fieldPath": "wind.id",
             "columnName": "wind_id",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "wind.speed",
             "columnName": "speed",
-            "affinity": "REAL"
+            "affinity": "REAL",
+            "notNull": true
           },
           {
             "fieldPath": "wind.deg",
             "columnName": "deg",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "wind.gust",
             "columnName": "gust",
-            "affinity": "REAL"
+            "affinity": "REAL",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -376,7 +444,7 @@
       },
       {
         "tableName": "wind_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`wind_id` INTEGER NOT NULL, `speed` REAL, `deg` INTEGER, `gust` REAL, PRIMARY KEY(`wind_id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`wind_id` INTEGER NOT NULL, `speed` REAL NOT NULL, `deg` INTEGER NOT NULL, `gust` REAL NOT NULL, PRIMARY KEY(`wind_id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -387,17 +455,20 @@
           {
             "fieldPath": "speed",
             "columnName": "speed",
-            "affinity": "REAL"
+            "affinity": "REAL",
+            "notNull": true
           },
           {
             "fieldPath": "deg",
             "columnName": "deg",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "gust",
             "columnName": "gust",
-            "affinity": "REAL"
+            "affinity": "REAL",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -410,7 +481,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '443cfbdd53f4c37105582f3f9aded70c')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1870a04a02c1872e8f213499c0a99991')"
     ]
   }
 }

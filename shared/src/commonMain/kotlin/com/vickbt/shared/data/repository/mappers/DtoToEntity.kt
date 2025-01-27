@@ -24,7 +24,7 @@ fun WeatherDataDto.toEntity(): WeatherDataEntity {
         code = this.code,
         message = this.message,
         cnt = this.cnt,
-        list = this.list.map { it.toEntity() },
+        list = this.weatherList.map { it.toEntity() },
         city = this.city.toEntity()
     )
 }

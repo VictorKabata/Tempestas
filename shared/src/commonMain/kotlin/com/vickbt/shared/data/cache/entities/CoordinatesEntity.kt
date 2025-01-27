@@ -9,6 +9,6 @@ data class CoordinatesEntity(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "coordinates_id")
     val id: Int = 1,
-    val lat: Double?=null,
-    val lon: Double?=null
+    val lat: Double,
+    val lon: Double
 )

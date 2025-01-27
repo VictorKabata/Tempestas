@@ -9,13 +9,13 @@ import androidx.room.PrimaryKey
 data class CityEntity(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "city_id")
-    val cityId: Int?=null,
-    val name: String?=null,
+    val cityId: Int,
+    val name: String,
     @Embedded
-    val coordinates: CoordinatesEntity?=null,
-    val country: String?=null,
-    val population: Int?=null,
-    val timezone: Int?=null,
-    val sunrise: Long?=null,
-    val sunset: Long?=null
+    val coordinates: CoordinatesEntity,
+    val country: String,
+    val population: Int,
+    val timezone: Int,
+    val sunrise: Long,
+    val sunset: Long
 )
