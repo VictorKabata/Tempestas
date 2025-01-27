@@ -26,9 +26,9 @@ import androidx.lifecycle.LifecycleEventObserver
 import com.vickbt.shared.ui.navigation.Navigation
 import com.vickbt.shared.ui.theme.TempestasTheme
 import kotlinx.coroutines.launch
-import utils.areLocationPermissionsAlreadyGranted
-import utils.decideCurrentPermissionStatus
-import utils.openApplicationSettings
+import com.vickbt.shared.domain.utils.areLocationPermissionsAlreadyGranted
+import com.vickbt.shared.domain.utils.decideCurrentPermissionStatus
+import com.vickbt.shared.domain.utils.openApplicationSettings
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

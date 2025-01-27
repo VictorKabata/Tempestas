@@ -7,7 +7,7 @@ import com.vickbt.shared.domain.models.WeatherData
 import com.vickbt.shared.domain.repository.WeatherRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
-import utils.LocationService
+import com.vickbt.shared.domain.utils.LocationService
 
 class WeatherDataSource(
     private val weatherApiService: WeatherApiService,

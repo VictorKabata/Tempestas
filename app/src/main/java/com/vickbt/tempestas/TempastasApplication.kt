@@ -1,10 +1,9 @@
 package com.vickbt.tempestas
 
 import android.app.Application
-import com.vickbt.shared.di.sharedModule
+import com.vickbt.shared.di.initKoin
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 
 class TempastasApplication : Application() {
@@ -12,10 +11,9 @@ class TempastasApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        startKoin {
+        initKoin {
             androidLogger(level = Level.DEBUG)
-            androidContext(this@TempastasApplication)
-            modules(sharedModule)
+            androidContext(androidContext = this@TempastasApplication)
         }
     }
 }

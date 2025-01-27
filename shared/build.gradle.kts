@@ -8,11 +8,12 @@ plugins {
 
     alias(libs.plugins.compose)
 
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.room)
+//    alias(libs.plugins.ksp)
+//    alias(libs.plugins.room)
     alias(libs.plugins.compose.compiler)
 
     alias(libs.plugins.android.library)
+    // alias(libs.plugins.android.kotlin)
 }
 
 kotlin {
@@ -21,6 +22,7 @@ kotlin {
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
+    kotlin.applyDefaultHierarchyTemplate()
     androidTarget()
 
     sourceSets {
@@ -100,10 +102,10 @@ buildkonfig {
     }
 }
 
-room {
+/*room {
     schemaDirectory("$projectDir/schemas")
 }
 
 dependencies {
     add("kspAndroid", libs.room.compiler)
-}
+}*/

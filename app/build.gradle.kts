@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.android.kotlin)
+    alias(libs.plugins.compose)
+    alias(libs.plugins.compose.compiler)
     /*id("com.google.firebase.appdistribution")
     id("com.google.gms.google-services")*/
 }
@@ -21,7 +23,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -39,14 +41,6 @@ android {
         compose = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
-
-    packaging {
-        resources.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
-        resources.excludes.add("META-INF/*")
-    }
 }
 
 dependencies {

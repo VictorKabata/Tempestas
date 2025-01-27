@@ -2,8 +2,6 @@
 
 package com.vickbt.shared.di
 
-import android.content.Context
-import com.google.android.gms.location.LocationServices
 import com.vickbt.shared.BuildKonfig
 import com.vickbt.shared.data.network.WeatherApiServiceImpl
 import com.vickbt.shared.data.network.services.WeatherApiService
@@ -11,6 +9,7 @@ import com.vickbt.shared.data.repository.datasource.WeatherDataSource
 import com.vickbt.shared.domain.repository.WeatherRepository
 import com.vickbt.shared.domain.utils.Constants.BASE_URL
 import com.vickbt.shared.domain.utils.Constants.URL_PATH
+import com.vickbt.shared.domain.utils.LocationService
 import com.vickbt.shared.ui.screens.home.HomeViewModel
 import com.vickbt.shared.ui.screens.search.SearchViewModel
 import io.github.aakira.napier.DebugAntilog
@@ -29,9 +28,10 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import org.koin.compose.viewmodel.dsl.viewModelOf
+import org.koin.core.context.startKoin
 import org.koin.core.module.Module
+import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
-import utils.LocationService
 
 val sharedModule: Module = module {
 
@@ -78,20 +78,19 @@ val sharedModule: Module = module {
         }
     }
 
-    /**Creates a fused location client used to create an instance of [LocationServices]*/
-    single {
-        val fusedLocationClient =
-            LocationServices.getFusedLocationProviderClient(get<Context>())
-        LocationService(context = get(), locationClient = fusedLocationClient)
-    }
-
     /**Create a singleton of [WeatherApiService]*/
     single<WeatherApiService> { WeatherApiServiceImpl(weatherApiClient = get()) }
 
     single<WeatherRepository> {
-        WeatherDataSource(weatherApiService = get(), locationService = get())
+        WeatherDataSource(weatherApiService = get(), locationService = get<LocationService>())
     }
 
     viewModelOf(::HomeViewModel)
     viewModelOf(::SearchViewModel)
 }
+
+fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
+    startKoin {
+        appDeclaration()
+        modules(sharedModule)
+    }
