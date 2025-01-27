@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "94c4f07881255fbf347f70f5255385b8",
+    "identityHash": "443cfbdd53f4c37105582f3f9aded70c",
     "entities": [
       {
         "tableName": "city_table",
@@ -274,27 +274,12 @@
       },
       {
         "tableName": "weather_item_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`dt` INTEGER, `main` TEXT, `weather` TEXT, `wind` TEXT, `visibility` INTEGER, `pop` REAL, `dtTxt` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`dt` INTEGER, `visibility` INTEGER, `pop` REAL, `dtTxt` TEXT, `id` INTEGER, `temp` REAL, `feelsLike` REAL, `tempMin` REAL, `tempMax` REAL, `pressure` INTEGER, `seaLevel` INTEGER, `groundLevel` INTEGER, `humidity` INTEGER, `tempKf` REAL, `wind_id` INTEGER, `speed` REAL, `deg` INTEGER, `gust` REAL, PRIMARY KEY(`dt`))",
         "fields": [
           {
             "fieldPath": "dt",
             "columnName": "dt",
             "affinity": "INTEGER"
-          },
-          {
-            "fieldPath": "main",
-            "columnName": "main",
-            "affinity": "TEXT"
-          },
-          {
-            "fieldPath": "weather",
-            "columnName": "weather",
-            "affinity": "TEXT"
-          },
-          {
-            "fieldPath": "wind",
-            "columnName": "wind",
-            "affinity": "TEXT"
           },
           {
             "fieldPath": "visibility",
@@ -310,17 +295,95 @@
             "fieldPath": "dtTxt",
             "columnName": "dtTxt",
             "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "main.id",
+            "columnName": "id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "main.temp",
+            "columnName": "temp",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "main.feelsLike",
+            "columnName": "feelsLike",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "main.tempMin",
+            "columnName": "tempMin",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "main.tempMax",
+            "columnName": "tempMax",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "main.pressure",
+            "columnName": "pressure",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "main.seaLevel",
+            "columnName": "seaLevel",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "main.groundLevel",
+            "columnName": "groundLevel",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "main.humidity",
+            "columnName": "humidity",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "main.tempKf",
+            "columnName": "tempKf",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "wind.id",
+            "columnName": "wind_id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "wind.speed",
+            "columnName": "speed",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "wind.deg",
+            "columnName": "deg",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "wind.gust",
+            "columnName": "gust",
+            "affinity": "REAL"
           }
         ],
         "primaryKey": {
           "autoGenerate": false,
-          "columnNames": []
+          "columnNames": [
+            "dt"
+          ]
         }
       },
       {
         "tableName": "wind_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`speed` REAL, `deg` INTEGER, `gust` REAL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`wind_id` INTEGER NOT NULL, `speed` REAL, `deg` INTEGER, `gust` REAL, PRIMARY KEY(`wind_id`))",
         "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "wind_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
           {
             "fieldPath": "speed",
             "columnName": "speed",
@@ -339,13 +402,15 @@
         ],
         "primaryKey": {
           "autoGenerate": false,
-          "columnNames": []
+          "columnNames": [
+            "wind_id"
+          ]
         }
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '94c4f07881255fbf347f70f5255385b8')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '443cfbdd53f4c37105582f3f9aded70c')"
     ]
   }
 }
