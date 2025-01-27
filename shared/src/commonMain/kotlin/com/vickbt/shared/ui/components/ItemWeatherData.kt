@@ -1,5 +1,6 @@
 package com.vickbt.shared.ui.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,6 +27,7 @@ import com.vickbt.shared.domain.models.WeatherData
 import com.vickbt.shared.domain.models.WeatherItem
 import com.vickbt.shared.domain.utils.MeasurementOptions
 import com.vickbt.shared.domain.utils.capitalizeEachWord
+import com.vickbt.shared.domain.utils.toImageFormat
 import com.vickbt.shared.domain.utils.toReadableDateFormat
 import com.vickbt.shared.domain.utils.toReadableDateTimeFormat
 import com.vickbt.shared.domain.utils.toSpeedUnitOfMeasurement
@@ -105,7 +107,7 @@ fun ItemWeatherData(
             ) {
                 AsyncImage(
                     modifier = Modifier.size(150.dp),
-                    model = "homeUiState.forecastWeather.current.condition.icon.toImageFormat()",
+                    model = weatherData.locationCurrentWeather.list.first().weather.first().icon.toImageFormat(),
                     contentDescription = "homeUiState.forecastWeather.current.condition.text",
                     contentScale = ContentScale.Crop
                 )
@@ -169,17 +171,19 @@ fun ItemWeatherData(
         weatherData.locationWeatherForecast?.let {
             Text(text = "This Week", fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
 
+            Log.e("VicKbt", "Forecast: $it")
+
             LazyRow(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(4.dp)
             ) {
-                items(items = weatherData.locationWeatherForecast) {
+                items(items = weatherData.locationWeatherForecast) { item ->
                     DayCondition(
                         modifier = Modifier.width(90.dp).wrapContentHeight(),
-                        imageUrl = "it.day.condition.icon.toImageFormat()",
-                        dayOfWeek = it.dt,
-                        minTemp = it.main.tempMin.toTempUnitOfMeasurement(),
-                        maxTemp = it.main.tempMax.toTempUnitOfMeasurement()
+                        imageUrl = item.weather.first().icon.toImageFormat(),
+                        dayOfWeek = item.dt,
+                        minTemp = item.main.tempMin.toTempUnitOfMeasurement(),
+                        maxTemp = item.main.tempMax.toTempUnitOfMeasurement()
                     )
                 }
             }
