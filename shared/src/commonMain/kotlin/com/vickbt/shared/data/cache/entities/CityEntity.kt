@@ -1,5 +1,8 @@
 package com.vickbt.shared.data.cache.entities
 
+import androidx.room.Entity
+
+@Entity(tableName = "city_table")
 data class CityEntity(
     val id: Int,
     val name: String,
