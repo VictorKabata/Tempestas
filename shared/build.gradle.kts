@@ -30,7 +30,6 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.ui)
-            implementation(compose.components.resources)
             implementation(compose.materialIconsExtended)
 
             implementation(libs.ktor.core)
@@ -122,10 +121,4 @@ room {
 
 dependencies {
     add("kspAndroid", libs.room.compiler)
-}
-
-compose.resources {
-    publicResClass = true
-    packageOfResClass = "com.vickbt.shared.resources"
-    generateResClass = always
 }

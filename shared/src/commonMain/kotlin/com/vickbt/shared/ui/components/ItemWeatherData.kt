@@ -10,6 +10,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Air
+import androidx.compose.material.icons.rounded.Thermostat
+import androidx.compose.material.icons.rounded.WaterDrop
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,14 +36,11 @@ import com.vickbt.shared.domain.utils.toReadableDateFormat
 import com.vickbt.shared.domain.utils.toReadableDateTimeFormat
 import com.vickbt.shared.domain.utils.toSpeedUnitOfMeasurement
 import com.vickbt.shared.domain.utils.toTempUnitOfMeasurement
-import com.vickbt.shared.resources.Res
-import com.vickbt.shared.resources.Res.drawable.wind
 import com.vickbt.shared.ui.states.WeatherUiState
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
-import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun ItemWeatherData(
@@ -144,21 +145,21 @@ fun ItemWeatherData(
             ) {
                 item {
                     ExtraCondition(
-                        icon = painterResource(Res.drawable.wind),
+                        icon = Icons.Rounded.WaterDrop,
                         title = "Humidity",
                         value = "${weatherData.locationCurrentWeather.list.first().main.humidity}%"
                     )
                 }
                 item {
                     ExtraCondition(
-                        icon = painterResource(Res.drawable.wind),
+                        icon = Icons.Rounded.Thermostat,
                         title = "Feels Like",
                         value = weatherData.locationCurrentWeather.list.first().main.feelsLike.toTempUnitOfMeasurement()
                     )
                 }
                 item {
                     ExtraCondition(
-                        icon = painterResource(Res.drawable.wind),
+                        icon = Icons.Rounded.Air,
                         title = "Wind",
                         value = weatherData.locationCurrentWeather.list.first().wind.speed
                             .toSpeedUnitOfMeasurement()
