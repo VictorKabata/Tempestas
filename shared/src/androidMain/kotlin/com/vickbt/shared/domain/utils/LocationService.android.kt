@@ -1,4 +1,4 @@
-package utils
+package com.vickbt.shared.domain.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -19,14 +19,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
 /**Util class to */
-class LocationService(
+actual class LocationService(
     private val context: Context,
     private val locationClient: FusedLocationProviderClient
 ) {
 
     /**Returns user's current latitude and longitude*/
     @SuppressLint("MissingPermission")
-    fun requestLocationUpdates(): Flow<LatLng?> = callbackFlow {
+    actual fun requestLocationUpdates(): Flow<LatLng?> = callbackFlow {
         if (!context.areLocationPermissionsAlreadyGranted()) {
             trySend(null)
             return@callbackFlow

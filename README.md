@@ -1,7 +1,6 @@
 # Tempestas
-<<<<<<< Updated upstream
- 
-=======
+
+An android app built using Kotlin that consumes [Open Call API 2.5](https://openweathermap.org/api/one-call-api) to get current day and 5 day weather forecast. The application also supports Kotlin Multiplatform by sharing logic and UI code.
 
 An android app built using Kotlin that consumes [Open Call API 2.5](https://openweathermap.org/api/one-call-api) to get current day and 5 day weather forecast. The application also supports Kotlin Multiplatform by sharing logic and UI code.
 
@@ -48,4 +47,3 @@ This projects uses [GitHub actions](https://github.com/VictorKabata/Tempestas/ac
 
 # Screenshots
 <img src="screenshots/img1.png" width="250"> <img src="screenshots/img2.png" width="250">
->>>>>>> Stashed changes

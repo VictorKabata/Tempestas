@@ -11,7 +11,7 @@ data class MainDto(
     @SerialName("temp_max") val tempMax: Double,
     @SerialName("pressure") val pressure: Int,
     @SerialName("sea_level") val seaLevel: Int,
-    @SerialName("grnd_level") val grndLevel: Int,
+    @SerialName("grnd_level") val groundLevel: Int,
     @SerialName("humidity") val humidity: Int,
     @SerialName("temp_kf") val tempKf: Double
 )
