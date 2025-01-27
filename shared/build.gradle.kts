@@ -45,6 +45,7 @@ kotlin {
             implementation(libs.koin.composeViewModel)
 
             implementation(libs.room.runtime)
+            implementation(libs.sqlite.bundled)
 
             api(libs.napier)
             api(libs.kotlinX.dateTime)

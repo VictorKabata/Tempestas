@@ -74,7 +74,7 @@ fun WindDto.toEntity(): WindEntity {
 
 fun CityDto.toEntity(): CityEntity {
     return CityEntity(
-        id = this.id,
+        cityId = this.id,
         name = this.name,
         coordinates = this.coordinates.toEntity(),
         country = this.country,

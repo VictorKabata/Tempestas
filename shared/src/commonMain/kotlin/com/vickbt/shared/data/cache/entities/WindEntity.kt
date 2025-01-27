@@ -4,7 +4,7 @@ import androidx.room.Entity
 
 @Entity(tableName = "wind_table")
 data class WindEntity(
-    val speed: Double,
-    val deg: Int,
-    val gust: Double
+    val speed: Double? = null,
+    val deg: Int? = null,
+    val gust: Double? = null
 )

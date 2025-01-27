@@ -1,15 +1,21 @@
 package com.vickbt.shared.data.cache.entities
 
+import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "city_table")
 data class CityEntity(
-    val id: Int,
-    val name: String,
-    val coordinates: CoordinatesEntity,
-    val country: String,
-    val population: Int,
-    val timezone: Int,
-    val sunrise: Long,
-    val sunset: Long
+    @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = "city_id")
+    val cityId: Int?=null,
+    val name: String?=null,
+    @Embedded
+    val coordinates: CoordinatesEntity?=null,
+    val country: String?=null,
+    val population: Int?=null,
+    val timezone: Int?=null,
+    val sunrise: Long?=null,
+    val sunset: Long?=null
 )

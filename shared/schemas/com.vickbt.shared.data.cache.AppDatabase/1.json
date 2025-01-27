@@ -1,0 +1,351 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "94c4f07881255fbf347f70f5255385b8",
+    "entities": [
+      {
+        "tableName": "city_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`city_id` INTEGER, `name` TEXT, `country` TEXT, `population` INTEGER, `timezone` INTEGER, `sunrise` INTEGER, `sunset` INTEGER, `coordinates_id` INTEGER, `lat` REAL, `lon` REAL, PRIMARY KEY(`city_id`))",
+        "fields": [
+          {
+            "fieldPath": "cityId",
+            "columnName": "city_id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "country",
+            "columnName": "country",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "population",
+            "columnName": "population",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "timezone",
+            "columnName": "timezone",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "sunrise",
+            "columnName": "sunrise",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "sunset",
+            "columnName": "sunset",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "coordinates.id",
+            "columnName": "coordinates_id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "coordinates.lat",
+            "columnName": "lat",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "coordinates.lon",
+            "columnName": "lon",
+            "affinity": "REAL"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "city_id"
+          ]
+        }
+      },
+      {
+        "tableName": "coordinates_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`coordinates_id` INTEGER NOT NULL, `lat` REAL, `lon` REAL, PRIMARY KEY(`coordinates_id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "coordinates_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lat",
+            "columnName": "lat",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "lon",
+            "columnName": "lon",
+            "affinity": "REAL"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "coordinates_id"
+          ]
+        }
+      },
+      {
+        "tableName": "main_weather_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `temp` REAL, `feelsLike` REAL, `tempMin` REAL, `tempMax` REAL, `pressure` INTEGER, `seaLevel` INTEGER, `groundLevel` INTEGER, `humidity` INTEGER, `tempKf` REAL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "temp",
+            "columnName": "temp",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "feelsLike",
+            "columnName": "feelsLike",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "tempMin",
+            "columnName": "tempMin",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "tempMax",
+            "columnName": "tempMax",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "pressure",
+            "columnName": "pressure",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "seaLevel",
+            "columnName": "seaLevel",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "groundLevel",
+            "columnName": "groundLevel",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "humidity",
+            "columnName": "humidity",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "tempKf",
+            "columnName": "tempKf",
+            "affinity": "REAL"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "weather_data_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `code` TEXT, `message` INTEGER, `cnt` INTEGER, `city_id` INTEGER, `name` TEXT, `country` TEXT, `population` INTEGER, `timezone` INTEGER, `sunrise` INTEGER, `sunset` INTEGER, `coordinates_id` INTEGER, `lat` REAL, `lon` REAL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "code",
+            "columnName": "code",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "message",
+            "columnName": "message",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "cnt",
+            "columnName": "cnt",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "city.cityId",
+            "columnName": "city_id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "city.name",
+            "columnName": "name",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "city.country",
+            "columnName": "country",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "city.population",
+            "columnName": "population",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "city.timezone",
+            "columnName": "timezone",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "city.sunrise",
+            "columnName": "sunrise",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "city.sunset",
+            "columnName": "sunset",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "city.coordinates.id",
+            "columnName": "coordinates_id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "city.coordinates.lat",
+            "columnName": "lat",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "city.coordinates.lon",
+            "columnName": "lon",
+            "affinity": "REAL"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "weather_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`weather_id` INTEGER, `main` TEXT, `description` TEXT, `icon` TEXT, PRIMARY KEY(`weather_id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "weather_id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "main",
+            "columnName": "main",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "icon",
+            "columnName": "icon",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "weather_id"
+          ]
+        }
+      },
+      {
+        "tableName": "weather_item_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`dt` INTEGER, `main` TEXT, `weather` TEXT, `wind` TEXT, `visibility` INTEGER, `pop` REAL, `dtTxt` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "dt",
+            "columnName": "dt",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "main",
+            "columnName": "main",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "weather",
+            "columnName": "weather",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "wind",
+            "columnName": "wind",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "visibility",
+            "columnName": "visibility",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "pop",
+            "columnName": "pop",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "dtTxt",
+            "columnName": "dtTxt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": []
+        }
+      },
+      {
+        "tableName": "wind_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`speed` REAL, `deg` INTEGER, `gust` REAL)",
+        "fields": [
+          {
+            "fieldPath": "speed",
+            "columnName": "speed",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "deg",
+            "columnName": "deg",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "gust",
+            "columnName": "gust",
+            "affinity": "REAL"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": []
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '94c4f07881255fbf347f70f5255385b8')"
+    ]
+  }
+}

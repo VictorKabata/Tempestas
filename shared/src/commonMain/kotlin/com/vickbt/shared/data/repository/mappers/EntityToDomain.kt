@@ -70,7 +70,7 @@ fun WindEntity.toDomain(): Wind {
 
 fun CityEntity.toDomain(): City {
     return City(
-        id = this.id,
+        id = this.cityId,
         name = this.name,
         coordinates = this.coordinates.toDomain(),
         country = this.country,
