@@ -44,9 +44,6 @@ fun SearchScreen(
     val searchUiState by viewModel.searchUiState.collectAsState()
     val scrollState = rememberScrollState()
 
-    Log.e("VicKbt", "search ui state current city: ${searchUiState.locationCurrentWeather?.city}")
-    Log.e("VicKbt", "search ui state forecast: ${searchUiState.locationWeatherForecast}")
-
     LaunchedEffect(searchQuery) {
         searchQuery?.let { viewModel.searchLocationWeather(query = it) }
     }
