@@ -58,7 +58,6 @@ fun String.toImageFormat(): String {
 }
 
 fun Long.setIntervalColor(currentTime: Instant = Clock.System.now()): Color {
-
     val timeDifference = currentTime - Instant.fromEpochMilliseconds(this)
 
     return when {
@@ -66,7 +65,6 @@ fun Long.setIntervalColor(currentTime: Instant = Clock.System.now()): Color {
         timeDifference <= 2.hours -> Color.Yellow
         else -> Color.Red
     }
-
 }
 
 fun PlatformContext.getAsyncImageLoader() = ImageLoader.Builder(this)
