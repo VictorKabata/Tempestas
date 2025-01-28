@@ -3,8 +3,8 @@ plugins {
     alias(libs.plugins.android.kotlin)
     alias(libs.plugins.compose)
     alias(libs.plugins.compose.compiler)
-    /*id("com.google.firebase.appdistribution")
-    id("com.google.gms.google-services")*/
+    id("com.google.firebase.appdistribution")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -23,7 +23,15 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+
+        release {
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -61,14 +69,7 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
 
-    // implementation(libs.firebase.analytics)
-
-    testImplementation(libs.androidX.junit)
-    testImplementation(libs.android.test.core)
-    testImplementation(libs.kotlinX.coroutines.test)
-    testImplementation(libs.mockk)
-    testImplementation(libs.google.truth)
-    testImplementation(libs.roboelectric)
+    implementation(libs.firebase.analytics)
 
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)

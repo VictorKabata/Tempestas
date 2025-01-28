@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "292391367285",
+    "project_id": "tempestas-e41b6",
+    "storage_bucket": "tempestas-e41b6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292391367285:android:8253efb8e85fd796f4fe3c",
+        "android_client_info": {
+          "package_name": "com.vickbt.tempestas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2VPqqt4THoPgoJehP69X4PgTvqsZMdwA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
