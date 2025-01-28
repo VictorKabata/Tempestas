@@ -27,8 +27,8 @@ class WeatherDataSource(
 
             val networkResponse = safeApiCall {
                 weatherApiService.searchLocationWeather(
-                    latitude = -1.2833, // location.latitude,
-                    longitude = 36.8167 // ,location.longitude,
+                    latitude = location.latitude,
+                    longitude = location.longitude,
                 ).toDomain()
             }.onEach { response ->
                 response.onSuccess { saveWeatherData(weatherData = it) }

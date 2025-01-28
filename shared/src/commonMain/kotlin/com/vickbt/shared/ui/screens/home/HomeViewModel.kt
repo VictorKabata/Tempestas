@@ -9,6 +9,7 @@ import com.vickbt.shared.ui.states.WeatherUiState
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
@@ -29,27 +30,28 @@ class HomeViewModel(private val weatherRepository: WeatherRepository) : ViewMode
         fetchCurrentLocationWeather()
     }
 
-    fun fetchCurrentLocationWeather() =
+    fun fetchCurrentLocationWeather(refresh: Boolean = false) =
         viewModelScope.launch(coroutineExceptionHandler) {
             val currentDate = Clock.System.now().toLocalDateTime(TimeZone.UTC).date.toString()
 
-            weatherRepository.fetchCurrentLocationWeather().collect { result ->
-                result.onSuccess { weatherData ->
-                    val weatherForecast =
-                        weatherData?.list?.filterNot { it.dtTxt.contains(currentDate) }
-                            ?.groupBy { it.dtTxt.substringBefore(" ") }
-                            ?.map { it.value.first() }
+            weatherRepository.fetchCurrentLocationWeather(refresh = refresh)
+                .collectLatest { result ->
+                    result.onSuccess { weatherData ->
+                        val weatherForecast =
+                            weatherData?.list?.filterNot { it.dtTxt.contains(currentDate) }
+                                ?.groupBy { it.dtTxt.substringBefore(" ") }
+                                ?.map { it.value.first() }
 
-                    _homeUiState.update {
-                        it.copy(
-                            isLoading = false,
-                            locationCurrentWeather = weatherData,
-                            locationWeatherForecast = weatherForecast
-                        )
+                        _homeUiState.update {
+                            it.copy(
+                                isLoading = false,
+                                locationCurrentWeather = weatherData,
+                                locationWeatherForecast = weatherForecast
+                            )
+                        }
+                    }.onFailure {
+                        _homeUiState.update { it.copy(isLoading = false, error = it.error) }
                     }
-                }.onFailure {
-                    _homeUiState.update { it.copy(isLoading = false, error = it.error) }
                 }
-            }
         }
 }

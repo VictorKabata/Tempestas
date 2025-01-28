@@ -2,7 +2,6 @@
 
 package com.vickbt.shared.ui.screens.search
 
-import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -48,50 +47,48 @@ fun SearchScreen(
         searchQuery?.let { viewModel.searchLocationWeather(query = it) }
     }
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        Scaffold(
-            modifier = Modifier.padding(paddingValues),
-            topBar = {
-                SearchAppBar(
-                    modifier = Modifier,
-                    onSearch = { searchQuery = it },
-                    onBackClick = { navController.navigateUp() }
+    Scaffold(
+        modifier = Modifier.fillMaxSize().padding(paddingValues),
+        topBar = {
+            SearchAppBar(
+                modifier = Modifier,
+                onSearch = { searchQuery = it },
+                onBackClick = { navController.navigateUp() }
+            )
+        }
+    ) { innerPadding ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+                .padding(horizontal = 12.dp, vertical = 8.dp)
+        ) {
+            if (searchUiState.isLoading) {
+                CircularProgressIndicator(
+                    modifier = Modifier
+                        .testTag("loading_progress_bar")
+                        .wrapContentSize()
+                        .align(Alignment.Center)
                 )
-            }
-        ) { innerPadding ->
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding)
-                    .padding(horizontal = 12.dp, vertical = 8.dp)
-            ) {
-                if (searchUiState.isLoading) {
-                    CircularProgressIndicator(
-                        modifier = Modifier
-                            .testTag("loading_progress_bar")
-                            .wrapContentSize()
-                            .align(Alignment.Center)
-                    )
-                } else if (searchUiState.error != null) {
-                    Text(
-                        modifier = Modifier
-                            .testTag("error_text")
-                            .align(Alignment.Center)
-                            .wrapContentSize()
-                            .padding(horizontal = 24.dp),
-                        text = searchUiState.error ?: "Error",
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Medium,
-                        textAlign = TextAlign.Center
-                    )
-                } else {
-                    ItemWeatherData(
-                        modifier = Modifier.testTag("weather_info_column")
-                            .fillMaxSize()
-                            .verticalScroll(scrollState),
-                        weatherData = searchUiState,
-                    )
-                }
+            } else if (searchUiState.error != null) {
+                Text(
+                    modifier = Modifier
+                        .testTag("error_text")
+                        .align(Alignment.Center)
+                        .wrapContentSize()
+                        .padding(horizontal = 24.dp),
+                    text = searchUiState.error ?: "Error",
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Medium,
+                    textAlign = TextAlign.Center
+                )
+            } else {
+                ItemWeatherData(
+                    modifier = Modifier.testTag("weather_info_column")
+                        .fillMaxSize()
+                        .verticalScroll(scrollState),
+                    weatherData = searchUiState,
+                )
             }
         }
     }

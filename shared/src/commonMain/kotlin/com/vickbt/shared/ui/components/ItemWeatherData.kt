@@ -31,6 +31,7 @@ import com.vickbt.shared.domain.models.WeatherData
 import com.vickbt.shared.domain.models.WeatherItem
 import com.vickbt.shared.domain.utils.MeasurementOptions
 import com.vickbt.shared.domain.utils.capitalizeEachWord
+import com.vickbt.shared.domain.utils.setIntervalColor
 import com.vickbt.shared.domain.utils.toImageFormat
 import com.vickbt.shared.domain.utils.toReadableDateFormat
 import com.vickbt.shared.domain.utils.toReadableDateTimeFormat
@@ -96,7 +97,8 @@ fun ItemWeatherData(
                         fontWeight = FontWeight.Medium,
                         fontSize = 12.sp,
                         maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
+                        overflow = TextOverflow.Ellipsis,
+                        color = cachedTime.setIntervalColor()
                     )
                 }
             }

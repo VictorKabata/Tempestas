@@ -51,6 +51,8 @@ kotlin {
 
             implementation(libs.navigation)
 
+            implementation(libs.pullRefresh)
+
             implementation(libs.bundles.coil)
         }
 
